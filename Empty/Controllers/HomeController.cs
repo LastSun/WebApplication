@@ -11,6 +11,7 @@ namespace Empty.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            //throw new HttpException();
             return View();
         }
 
