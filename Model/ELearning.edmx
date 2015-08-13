@@ -1,0 +1,1027 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ELearning.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ELearningStoreContainer">
+    <EntitySet Name="Course" EntityType="ELearning.Store.Course" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Project" EntityType="ELearning.Store.Project" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Class" EntityType="ELearning.Store.Class" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Courseware" EntityType="ELearning.Store.Courseware" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Paper" EntityType="ELearning.Store.Paper" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Quiz" EntityType="ELearning.Store.Quiz" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Claim" EntityType="ELearning.Store.Claim" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Login" EntityType="ELearning.Store.Login" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Role" EntityType="ELearning.Store.Role" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="ELearning.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Action_UserCourse" EntityType="ELearning.Store.Action_UserCourse" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Action_UserQuiz" EntityType="ELearning.Store.Action_UserQuiz" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Class_Course" EntityType="ELearning.Store.Class_Course" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User_Role" EntityType="ELearning.Store.User_Role" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User_Class" EntityType="ELearning.Store.User_Class" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Class_Course_Class" Association="ELearning.Store.FK_Class_Course_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Class_Course" EntitySet="Class_Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Class_Course_Course" Association="ELearning.Store.FK_Class_Course_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Class_Course" EntitySet="Class_Course" />
+    </AssociationSet>
+    <AssociationSet Name="Action_UserCourse_Course" Association="ELearning.Store.Action_UserCourse_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Action_UserCourse" EntitySet="Action_UserCourse" />
+    </AssociationSet>
+    <AssociationSet Name="Project_Quiz" Association="ELearning.Store.Project_Quiz">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Quiz" EntitySet="Quiz" />
+    </AssociationSet>
+    <AssociationSet Name="Project_User" Association="ELearning.Store.Project_User">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="User_Login" Association="ELearning.Store.User_Login">
+      <End Role="User" EntitySet="User" />
+      <End Role="Login" EntitySet="Login" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role_Role" Association="ELearning.Store.FK_User_Role_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User_Role" EntitySet="User_Role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role_User" Association="ELearning.Store.FK_User_Role_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="User_Role" EntitySet="User_Role" />
+    </AssociationSet>
+    <AssociationSet Name="Action_UserCourse_User" Association="ELearning.Store.Action_UserCourse_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Action_UserCourse" EntitySet="Action_UserCourse" />
+    </AssociationSet>
+    <AssociationSet Name="Action_UserQuiz_User" Association="ELearning.Store.Action_UserQuiz_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Action_UserQuiz" EntitySet="Action_UserQuiz" />
+    </AssociationSet>
+    <AssociationSet Name="Action_UserQuiz_Quiz" Association="ELearning.Store.Action_UserQuiz_Quiz">
+      <End Role="Quiz" EntitySet="Quiz" />
+      <End Role="Action_UserQuiz" EntitySet="Action_UserQuiz" />
+    </AssociationSet>
+    <AssociationSet Name="Course_Courseware" Association="ELearning.Store.Course_Courseware">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Courseware" EntitySet="Courseware" />
+    </AssociationSet>
+    <AssociationSet Name="Quiz_Course" Association="ELearning.Store.Quiz_Course">
+      <End Role="Quiz" EntitySet="Quiz" />
+      <End Role="Course" EntitySet="Course" />
+    </AssociationSet>
+    <AssociationSet Name="Project_Course" Association="ELearning.Store.Project_Course">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Course" EntitySet="Course" />
+    </AssociationSet>
+    <AssociationSet Name="Quiz_Paper" Association="ELearning.Store.Quiz_Paper">
+      <End Role="Quiz" EntitySet="Quiz" />
+      <End Role="Paper" EntitySet="Paper" />
+    </AssociationSet>
+    <AssociationSet Name="Project_Class" Association="ELearning.Store.Project_Class">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Class" EntitySet="Class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Class_User" Association="ELearning.Store.FK_User_Class_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="User_Class" EntitySet="User_Class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Class_Class" Association="ELearning.Store.FK_User_Class_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="User_Class" EntitySet="User_Class" />
+    </AssociationSet>
+    <AssociationSet Name="User_Claim" Association="ELearning.Store.User_Claim">
+      <End Role="User" EntitySet="User" />
+      <End Role="Claim" EntitySet="Claim" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="CoursewareId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Courseware">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Paper">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Quiz">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="CourseId" Type="int" Nullable="true" />
+    <Property Name="PaperId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Claim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="ClaimType" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="ProviderKey" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" Nullable="true" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Action_UserCourse">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="CourseId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Action_UserQuiz">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="QuizId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Class_Course">
+    <Key>
+      <PropertyRef Name="Class_Id" />
+      <PropertyRef Name="Course_Id" />
+    </Key>
+    <Property Name="Class_Id" Type="int" Nullable="false" />
+    <Property Name="Course_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User_Role">
+    <Key>
+      <PropertyRef Name="Role_Id" />
+      <PropertyRef Name="User_Id" />
+    </Key>
+    <Property Name="Role_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="User_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="User_Class">
+    <Key>
+      <PropertyRef Name="User_Id" />
+      <PropertyRef Name="Class_Id" />
+    </Key>
+    <Property Name="User_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Class_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="Action_UserCourse_Course">
+    <End Role="Course" Type="ELearning.Store.Course" Multiplicity="1" />
+    <End Role="Action_UserCourse" Type="ELearning.Store.Action_UserCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Action_UserCourse">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Project_Quiz">
+    <End Role="Project" Type="ELearning.Store.Project" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Quiz" Type="ELearning.Store.Quiz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Quiz">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Project_User">
+    <End Role="Project" Type="ELearning.Store.Project" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User" Type="ELearning.Store.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="User_Login">
+    <End Role="User" Type="ELearning.Store.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Login" Type="ELearning.Store.Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Login">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Action_UserCourse_User">
+    <End Role="User" Type="ELearning.Store.User" Multiplicity="1" />
+    <End Role="Action_UserCourse" Type="ELearning.Store.Action_UserCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Action_UserCourse">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Action_UserQuiz_User">
+    <End Role="User" Type="ELearning.Store.User" Multiplicity="1" />
+    <End Role="Action_UserQuiz" Type="ELearning.Store.Action_UserQuiz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Action_UserQuiz">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Action_UserQuiz_Quiz">
+    <End Role="Quiz" Type="ELearning.Store.Quiz" Multiplicity="1" />
+    <End Role="Action_UserQuiz" Type="ELearning.Store.Action_UserQuiz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quiz">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Action_UserQuiz">
+        <PropertyRef Name="QuizId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Course_Courseware">
+    <End Role="Course" Type="ELearning.Store.Course" Multiplicity="*" />
+    <End Role="Courseware" Type="ELearning.Store.Courseware" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Courseware">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="CoursewareId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Quiz_Course">
+    <End Role="Quiz" Type="ELearning.Store.Quiz" Multiplicity="*" />
+    <End Role="Course" Type="ELearning.Store.Course" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Quiz">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Project_Course">
+    <End Role="Project" Type="ELearning.Store.Project" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Course" Type="ELearning.Store.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Quiz_Paper">
+    <End Role="Quiz" Type="ELearning.Store.Quiz" Multiplicity="*" />
+    <End Role="Paper" Type="ELearning.Store.Paper" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Paper">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Quiz">
+        <PropertyRef Name="PaperId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Project_Class">
+    <End Role="Project" Type="ELearning.Store.Project" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Class" Type="ELearning.Store.Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="User_Claim">
+    <End Role="User" Type="ELearning.Store.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Claim" Type="ELearning.Store.Claim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Claim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Class_Course_Class">
+    <End Role="Class" Type="ELearning.Store.Class" Multiplicity="1" />
+    <End Role="Class_Course" Type="ELearning.Store.Class_Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Class_Course">
+        <PropertyRef Name="Class_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Class_Course_Course">
+    <End Role="Class_Course" Type="ELearning.Store.Class_Course" Multiplicity="*" />
+    <End Role="Course" Type="ELearning.Store.Course" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Class_Course">
+        <PropertyRef Name="Course_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role_Role">
+    <End Role="Role" Type="ELearning.Store.Role" Multiplicity="1" />
+    <End Role="User_Role" Type="ELearning.Store.User_Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Role">
+        <PropertyRef Name="Role_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role_User">
+    <End Role="User_Role" Type="ELearning.Store.User_Role" Multiplicity="*" />
+    <End Role="User" Type="ELearning.Store.User" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Role">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Class_User">
+    <End Role="User" Type="ELearning.Store.User" Multiplicity="1" />
+    <End Role="User_Class" Type="ELearning.Store.User_Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Class">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Class_Class">
+    <End Role="User_Class" Type="ELearning.Store.User_Class" Multiplicity="*" />
+    <End Role="Class" Type="ELearning.Store.Class" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Class">
+        <PropertyRef Name="Class_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ELearning" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ELearningContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Course" EntityType="ELearning.Course" />
+          <EntitySet Name="Project" EntityType="ELearning.Project" />
+          <EntitySet Name="Class" EntityType="ELearning.Class" />
+          <EntitySet Name="Courseware" EntityType="ELearning.Courseware" />
+          <EntitySet Name="Paper" EntityType="ELearning.Paper" />
+          <EntitySet Name="Quiz" EntityType="ELearning.Quiz" />
+          <EntitySet Name="Claim" EntityType="ELearning.Claim" />
+          <EntitySet Name="Login" EntityType="ELearning.Login" />
+          <EntitySet Name="Role" EntityType="ELearning.Role" />
+          <EntitySet Name="User" EntityType="ELearning.User" />
+          <EntitySet Name="Action_UserCourse" EntityType="ELearning.Action_UserCourse" />
+          <EntitySet Name="Action_UserQuiz" EntityType="ELearning.Action_UserQuiz" />
+          <AssociationSet Name="Class_Course" Association="ELearning.Class_Course">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="Action_UserCourse_Course" Association="ELearning.Action_UserCourse_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Action_UserCourse" EntitySet="Action_UserCourse" />
+          </AssociationSet>
+          <AssociationSet Name="Project_Quiz" Association="ELearning.Project_Quiz">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Quiz" EntitySet="Quiz" />
+          </AssociationSet>
+          <AssociationSet Name="Project_User" Association="ELearning.Project_User">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="User_Login" Association="ELearning.User_Login">
+            <End Role="User" EntitySet="User" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="User_Role" Association="ELearning.User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="Action_UserCourse_User" Association="ELearning.Action_UserCourse_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Action_UserCourse" EntitySet="Action_UserCourse" />
+          </AssociationSet>
+          <AssociationSet Name="Action_UserQuiz_User" Association="ELearning.Action_UserQuiz_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Action_UserQuiz" EntitySet="Action_UserQuiz" />
+          </AssociationSet>
+          <AssociationSet Name="Action_UserQuiz_Quiz" Association="ELearning.Action_UserQuiz_Quiz">
+            <End Role="Quiz" EntitySet="Quiz" />
+            <End Role="Action_UserQuiz" EntitySet="Action_UserQuiz" />
+          </AssociationSet>
+          <AssociationSet Name="Course_Courseware" Association="ELearning.Course_Courseware">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Courseware" EntitySet="Courseware" />
+          </AssociationSet>
+          <AssociationSet Name="Quiz_Course" Association="ELearning.Quiz_Course">
+            <End Role="Quiz" EntitySet="Quiz" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="Project_Course" Association="ELearning.Project_Course">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="Quiz_Paper" Association="ELearning.Quiz_Paper">
+            <End Role="Quiz" EntitySet="Quiz" />
+            <End Role="Paper" EntitySet="Paper" />
+          </AssociationSet>
+          <AssociationSet Name="Project_Class" Association="ELearning.Project_Class">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Class" EntitySet="Class" />
+          </AssociationSet>
+          <AssociationSet Name="User_Class" Association="ELearning.User_Class">
+            <End Role="User" EntitySet="User" />
+            <End Role="Class" EntitySet="Class" />
+          </AssociationSet>
+          <AssociationSet Name="User_Claim" Association="ELearning.User_Claim">
+            <End Role="User" EntitySet="User" />
+            <End Role="Claim" EntitySet="Claim" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Class" Relationship="ELearning.Class_Course" FromRole="Course" ToRole="Class" />
+          <NavigationProperty Name="Action_User_Course" Relationship="ELearning.Action_UserCourse_Course" FromRole="Course" ToRole="Action_UserCourse" />
+          <NavigationProperty Name="Courseware" Relationship="ELearning.Course_Courseware" FromRole="Course" ToRole="Courseware" />
+          <NavigationProperty Name="Quiz" Relationship="ELearning.Quiz_Course" FromRole="Course" ToRole="Quiz" />
+          <NavigationProperty Name="Project" Relationship="ELearning.Project_Course" FromRole="Course" ToRole="Project" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="CoursewareId" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Quiz" Relationship="ELearning.Project_Quiz" FromRole="Project" ToRole="Quiz" />
+          <NavigationProperty Name="User" Relationship="ELearning.Project_User" FromRole="Project" ToRole="User" />
+          <NavigationProperty Name="Course" Relationship="ELearning.Project_Course" FromRole="Project" ToRole="Course" />
+          <NavigationProperty Name="Class" Relationship="ELearning.Project_Class" FromRole="Project" ToRole="Class" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Course" Relationship="ELearning.Class_Course" FromRole="Class" ToRole="Course" />
+          <NavigationProperty Name="Project" Relationship="ELearning.Project_Class" FromRole="Class" ToRole="Project" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="ELearning.User_Class" FromRole="Class" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Courseware">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Course" Relationship="ELearning.Course_Courseware" FromRole="Courseware" ToRole="Course" />
+        </EntityType>
+        <EntityType Name="Paper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Quiz" Relationship="ELearning.Quiz_Paper" FromRole="Paper" ToRole="Quiz" />
+        </EntityType>
+        <EntityType Name="Quiz">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="ELearning.Project_Quiz" FromRole="Quiz" ToRole="Project" />
+          <NavigationProperty Name="Action_User_Quiz" Relationship="ELearning.Action_UserQuiz_Quiz" FromRole="Quiz" ToRole="Action_UserQuiz" />
+          <NavigationProperty Name="Course" Relationship="ELearning.Quiz_Course" FromRole="Quiz" ToRole="Course" />
+          <Property Name="CourseId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Paper" Relationship="ELearning.Quiz_Paper" FromRole="Quiz" ToRole="Paper" />
+          <Property Name="PaperId" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Claim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="ELearning.User_Claim" FromRole="Claim" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="ELearning.User_Login" FromRole="Login" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="ELearning.User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Claim" Relationship="ELearning.User_Claim" FromRole="User" ToRole="Claim" />
+          <NavigationProperty Name="Login" Relationship="ELearning.User_Login" FromRole="User" ToRole="Login" />
+          <NavigationProperty Name="Role" Relationship="ELearning.User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Project" Relationship="ELearning.Project_User" FromRole="User" ToRole="Project" />
+          <NavigationProperty Name="Class" Relationship="ELearning.User_Class" FromRole="User" ToRole="Class" />
+          <NavigationProperty Name="Action_User_Course" Relationship="ELearning.Action_UserCourse_User" FromRole="User" ToRole="Action_UserCourse" />
+          <NavigationProperty Name="Action_User_Quiz" Relationship="ELearning.Action_UserQuiz_User" FromRole="User" ToRole="Action_UserQuiz" />
+        </EntityType>
+        <EntityType Name="Action_UserCourse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CourseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Course" Relationship="ELearning.Action_UserCourse_Course" FromRole="Action_UserCourse" ToRole="Course" />
+          <NavigationProperty Name="User" Relationship="ELearning.Action_UserCourse_User" FromRole="Action_UserCourse" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Action_UserQuiz">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="QuizId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="ELearning.Action_UserQuiz_User" FromRole="Action_UserQuiz" ToRole="User" />
+          <NavigationProperty Name="Quiz" Relationship="ELearning.Action_UserQuiz_Quiz" FromRole="Action_UserQuiz" ToRole="Quiz" />
+        </EntityType>
+        <Association Name="Class_Course">
+          <End Type="ELearning.Class" Role="Class" Multiplicity="*" />
+          <End Type="ELearning.Course" Role="Course" Multiplicity="*" />
+        </Association>
+        <Association Name="Action_UserCourse_Course">
+          <End Type="ELearning.Course" Role="Course" Multiplicity="1" />
+          <End Type="ELearning.Action_UserCourse" Role="Action_UserCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Action_UserCourse">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Project_Quiz">
+          <End Type="ELearning.Project" Role="Project" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ELearning.Quiz" Role="Quiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Quiz">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Project_User">
+          <End Type="ELearning.Project" Role="Project" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ELearning.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_Login">
+          <End Type="ELearning.User" Role="User" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ELearning.Login" Role="Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_Role">
+          <End Type="ELearning.Role" Role="Role" Multiplicity="*" />
+          <End Type="ELearning.User" Role="User" Multiplicity="*" />
+        </Association>
+        <Association Name="Action_UserCourse_User">
+          <End Type="ELearning.User" Role="User" Multiplicity="1" />
+          <End Type="ELearning.Action_UserCourse" Role="Action_UserCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Action_UserCourse">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Action_UserQuiz_User">
+          <End Type="ELearning.User" Role="User" Multiplicity="1" />
+          <End Type="ELearning.Action_UserQuiz" Role="Action_UserQuiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Action_UserQuiz">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Action_UserQuiz_Quiz">
+          <End Type="ELearning.Quiz" Role="Quiz" Multiplicity="1" />
+          <End Type="ELearning.Action_UserQuiz" Role="Action_UserQuiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quiz">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Action_UserQuiz">
+              <PropertyRef Name="QuizId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Course_Courseware">
+          <End Type="ELearning.Course" Role="Course" Multiplicity="*" />
+          <End Type="ELearning.Courseware" Role="Courseware" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Courseware">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="CoursewareId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Quiz_Course">
+          <End Type="ELearning.Quiz" Role="Quiz" Multiplicity="*" />
+          <End Type="ELearning.Course" Role="Course" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Quiz">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Project_Course">
+          <End Type="ELearning.Project" Role="Project" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ELearning.Course" Role="Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Quiz_Paper">
+          <End Type="ELearning.Quiz" Role="Quiz" Multiplicity="*" />
+          <End Type="ELearning.Paper" Role="Paper" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Paper">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Quiz">
+              <PropertyRef Name="PaperId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Project_Class">
+          <End Type="ELearning.Project" Role="Project" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ELearning.Class" Role="Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_Class">
+          <End Type="ELearning.User" Role="User" Multiplicity="*" />
+          <End Type="ELearning.Class" Role="Class" Multiplicity="*" />
+        </Association>
+        <Association Name="User_Claim">
+          <End Type="ELearning.User" Role="User" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ELearning.Claim" Role="Claim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Claim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ELearningStoreContainer" CdmEntityContainer="ELearningContainer">
+    <EntitySetMapping Name="Course">
+      <EntityTypeMapping TypeName="IsTypeOf(ELearning.Course)">
+        <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="CoursewareId" ColumnName="CoursewareId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project">
+      <EntityTypeMapping TypeName="IsTypeOf(ELearning.Project)">
+        <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Class">
+      <EntityTypeMapping TypeName="IsTypeOf(ELearning.Class)">
+        <MappingFragment StoreEntitySet="Class">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courseware">
+      <EntityTypeMapping TypeName="IsTypeOf(ELearning.Courseware)">
+        <MappingFragment StoreEntitySet="Courseware">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Paper">
+      <EntityTypeMapping TypeName="IsTypeOf(ELearning.Paper)">
+        <MappingFragment StoreEntitySet="Paper">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quiz">
+      <EntityTypeMapping TypeName="IsTypeOf(ELearning.Quiz)">
+        <MappingFragment StoreEntitySet="Quiz">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="PaperId" ColumnName="PaperId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Claim">
+      <EntityTypeMapping TypeName="IsTypeOf(ELearning.Claim)">
+        <MappingFragment StoreEntitySet="Claim">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Login">
+      <EntityTypeMapping TypeName="IsTypeOf(ELearning.Login)">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="IsTypeOf(ELearning.Role)">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="IsTypeOf(ELearning.User)">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Action_UserCourse">
+      <EntityTypeMapping TypeName="IsTypeOf(ELearning.Action_UserCourse)">
+        <MappingFragment StoreEntitySet="Action_UserCourse">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Action_UserQuiz">
+      <EntityTypeMapping TypeName="IsTypeOf(ELearning.Action_UserQuiz)">
+        <MappingFragment StoreEntitySet="Action_UserQuiz">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="QuizId" ColumnName="QuizId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Class_Course" TypeName="ELearning.Class_Course" StoreEntitySet="Class_Course">
+      <EndProperty Name="Class">
+        <ScalarProperty Name="Id" ColumnName="Class_Id" />
+      </EndProperty>
+      <EndProperty Name="Course">
+        <ScalarProperty Name="Id" ColumnName="Course_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="User_Role" TypeName="ELearning.User_Role" StoreEntitySet="User_Role">
+      <EndProperty Name="Role">
+        <ScalarProperty Name="Id" ColumnName="Role_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="User_Class" TypeName="ELearning.User_Class" StoreEntitySet="User_Class">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Class">
+        <ScalarProperty Name="Id" ColumnName="Class_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

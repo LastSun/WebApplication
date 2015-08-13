@@ -165,6 +165,7 @@ namespace Single_Page.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Hometown = model.Hometown };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                await UserManager.AddClaimAsync(user.Id, new Claim("ClaimType1", "Claim1"));
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
