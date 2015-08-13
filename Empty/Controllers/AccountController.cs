@@ -5,11 +5,13 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Empty.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using CodeFirstModelFromDB;
+using Empty.Models;
+
 
 namespace Empty.Controllers
 {
@@ -164,7 +166,7 @@ namespace Empty.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User{ UserName = model.Email, Email = model.Email, ProjectId = 1 };
+                var user = new CodeFirstModelFromDB.User{ UserName = model.Email, Email = model.Email, ProjectId = 1 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -380,7 +382,7 @@ namespace Empty.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new User{ UserName = model.Email, Email = model.Email };
+                var user = new CodeFirstModelFromDB.User { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

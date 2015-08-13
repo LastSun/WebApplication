@@ -10,7 +10,7 @@ namespace CodeFirstModelFromDB
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext()
-            : base("ELearning", throwIfV1Schema: false)
+            : base("ELearning1", throwIfV1Schema: false)
         {
         }
 

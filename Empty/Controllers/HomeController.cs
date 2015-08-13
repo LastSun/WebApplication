@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CodeFirstModelFromDB;
 
 namespace Empty.Controllers
 {
@@ -13,6 +14,12 @@ namespace Empty.Controllers
         {
             //throw new HttpException();
             return View();
+        }
+
+        public ActionResult Test(int id)
+        {
+            var project = new Project { Id = 1 };
+            return Json(project, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Index2()
