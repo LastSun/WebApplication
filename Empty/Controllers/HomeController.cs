@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CodeFirstModelFromDB;
+using Empty.Models;
 
 namespace Empty.Controllers
 {
@@ -12,19 +13,36 @@ namespace Empty.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            //throw new HttpException();
             return View();
         }
 
-        public ActionResult Test(int id)
+        public ActionResult Test(string name)
         {
-            var project = new Project { Id = 1 };
+            var project = new Project { Name = name };
+            using (var db = new ApplicationDbContext())
+            {
+                db.Project.Add(project);
+                db.SaveChanges();
+            }
             return Json(project, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Index2()
         {
-            return View();
+            var projectsViewModel = new ProjectsViewModel { Projects = new List<ProjectViewModel>() };
+            using (var db = new ApplicationDbContext())
+            {
+                var projects = from project in db.Project select project;
+                foreach (var project in projects)
+                {
+                    projectsViewModel.Projects.Add(new ProjectViewModel
+                    {
+                        Id = project.Id,
+                        Name = project.Name
+                    });
+                }
+            }
+            return View(new { Id = 1, Name = "SDF" });
         }
 
         public ActionResult Index3()

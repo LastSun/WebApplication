@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Empty.Models;
+@*@model ProjectsViewModel*@
+@{
     ViewBag.Title = "Index2";
 }
 <div class="container-fluid">
@@ -13,16 +15,16 @@
             <table class="table table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>项目编号</th>
+                        <th>项目名称</th>
                     </tr>
                 </thead>
                 <tbody>
+                @*@foreach(var project in Model.Projects) {*@
                     <tr>
-                        <td>1</td>
+                        <td></td><td></td>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                    </tr>
+                @*}*@
                 </tbody>
             </table>
         </div>
@@ -33,45 +35,31 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+                <h4 class="modal-title" id="exampleModalLabel">新建项目</h4>
             </div>
             <div class="modal-body">
-                <form role="form">
+                <form class="form-horizontal">
                     <div class="form-group">
-                        <label for="recipient-name" class="control-label">Recipient:</label>
-                        <input type="text" class="form-control" id="recipient-name">
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="control-label">Message:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <label for="recipient-name" class="control-label col-sm-2">项目名称:</label>
+                        <div class="col-sm-10"><input type="text" class="form-control" id="recipient-name"></div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="testGet();">Send message</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="testGet();">确认新建</button>
             </div>
         </div>
     </div>
 </div>
 <script>
     function testGet() {
-        $.getJSON("/Home/Test", { id: 1 }, function(result) {
-            alert(result.Id);
+        $.getJSON("/Home/Test", { name: $('#recipient-name').val() }, function (result) {
             $('#exampleModal').modal('hide');
         });
     }
-    function test() {
-        $.ajax({
-            url: '@Url.Action("Test", "Home")',
-            type: 'GET',
-            cache: false,
-            data: { id: 1 },
-            dataType: 'json',
-            success: function (data) {
-                alert(data.Id);
-                $('#exampleModal').modal('hide');
-            }
-        });
-    }
+    var model = '[{"Id":"10","Name":"SDF"}]';
+    window.onload = function() {
+        var json = $.parseJSON(model);
+    };
 </script>

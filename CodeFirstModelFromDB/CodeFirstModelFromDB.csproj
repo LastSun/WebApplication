@@ -69,6 +69,15 @@
     <Compile Include="EF\Courseware.cs" />
     <Compile Include="EF\Paper.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\201508131246418_InitialCreate.cs" />
+    <Compile Include="Migrations\201508131246418_InitialCreate.Designer.cs">
+      <DependentUpon>201508131246418_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508181303467_AddProjectName.cs" />
+    <Compile Include="Migrations\201508181303467_AddProjectName.Designer.cs">
+      <DependentUpon>201508181303467_AddProjectName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="EF\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,6 +87,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201508131246418_InitialCreate.resx">
+      <DependentUpon>201508131246418_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508181303467_AddProjectName.resx">
+      <DependentUpon>201508181303467_AddProjectName.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
