@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index2";
 }
 <div class="container-fluid">
@@ -37,7 +36,7 @@
                 <h4 class="modal-title" id="exampleModalLabel">New message</h4>
             </div>
             <div class="modal-body">
-                <form>
+                <form role="form">
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">Recipient:</label>
                         <input type="text" class="form-control" id="recipient-name">
@@ -50,12 +49,18 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="test();">Send message</button>
+                <button type="button" class="btn btn-primary" onclick="testGet();">Send message</button>
             </div>
         </div>
     </div>
 </div>
 <script>
+    function testGet() {
+        $.getJSON("/Home/Test", { id: 1 }, function(result) {
+            alert(result.Id);
+            $('#exampleModal').modal('hide');
+        });
+    }
     function test() {
         $.ajax({
             url: '@Url.Action("Test", "Home")',
@@ -63,7 +68,8 @@
             cache: false,
             data: { id: 1 },
             dataType: 'json',
-            success: function(data){
+            success: function (data) {
+                alert(data.Id);
                 $('#exampleModal').modal('hide');
             }
         });
