@@ -1,6 +1,4 @@
-﻿@using Empty.Models;
-@*@model ProjectsViewModel*@
-@{
+﻿@{
     ViewBag.Title = "Index2";
 }
 <div class="container-fluid">
@@ -20,11 +18,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                @*@foreach(var project in Model.Projects) {*@
+                @foreach (var project in Model)
+                {
                     <tr>
-                        <td></td><td></td>
+                        <td>@project.Id</td>
+                        <td>@project.Name</td>
                     </tr>
-                @*}*@
+                }
                 </tbody>
             </table>
         </div>
@@ -47,19 +47,37 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" onclick="testGet();">确认新建</button>
+                <button type="button" class="btn btn-primary" onclick="select();">确认新建</button>
             </div>
         </div>
     </div>
 </div>
 <script>
+    function select() {
+        $('#exampleModal').modal('hide');
+        var table = $('table').DataTable();
+        var selectedRows = table.rows({ selected: true }).data();
+        $.each(selectedRows, function(index, value) {
+            alert(index + ': ' + value);
+            alert(value[0]);
+            alert(value[1]);
+        });
+    }
     function testGet() {
-        $.getJSON("/Home/Test", { name: $('#recipient-name').val() }, function (result) {
+        $.post("/Home/Test", { name: $('#recipient-name').val() }, function (result) {
+            //AddTalbeRow(result);
             $('#exampleModal').modal('hide');
         });
     }
-    var model = '[{"Id":"10","Name":"SDF"}]';
+
+    function AddTalbeRow(project) {
+        $('table > tbody > tr:first').before('<tr><td>' + project.Id + '</td><td>' + project.Name + '</td></tr>');
+    }
+
     window.onload = function() {
-        var json = $.parseJSON(model);
+        $('table').DataTable({
+            "language": { "url": "//cdn.datatables.net/plug-ins/1.10.8/i18n/Chinese.json" },
+            "select": { style: "multi" }
+        });
     };
 </script>

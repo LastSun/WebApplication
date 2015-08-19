@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using CodeFirstModelFromDB;
 using Empty.Models;
+using Newtonsoft.Json;
 
 namespace Empty.Controllers
 {
@@ -24,25 +25,14 @@ namespace Empty.Controllers
                 db.Project.Add(project);
                 db.SaveChanges();
             }
-            return Json(project, JsonRequestBehavior.AllowGet);
+            return RedirectToAction("Index2");
         }
 
         public ActionResult Index2()
         {
-            var projectsViewModel = new ProjectsViewModel { Projects = new List<ProjectViewModel>() };
-            using (var db = new ApplicationDbContext())
-            {
-                var projects = from project in db.Project select project;
-                foreach (var project in projects)
-                {
-                    projectsViewModel.Projects.Add(new ProjectViewModel
-                    {
-                        Id = project.Id,
-                        Name = project.Name
-                    });
-                }
-            }
-            return View(new { Id = 1, Name = "SDF" });
+            var db = new ApplicationDbContext();
+            var data = from project in db.Project select project;
+            return View(data);
         }
 
         public ActionResult Index3()
