@@ -29,7 +29,7 @@ $.extend($.fn, {
 		// check if a validator for this form was already created
 		var validator = $.data( this[ 0 ], "validator" );
 		if ( validator ) {
-			return validator;
+			//return validator;
 		}
 
 		// Add novalidate tag if HTML5.

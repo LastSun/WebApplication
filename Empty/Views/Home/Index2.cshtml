@@ -38,10 +38,11 @@
                 <h4 class="modal-title" id="exampleModalLabel">新建项目</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal">
+                <form class="form-horizontal" id="newProjectForm">
                     <div class="form-group">
-                        <label for="recipient-name" class="control-label col-sm-2">项目名称:</label>
-                        <div class="col-sm-10"><input type="text" class="form-control" id="recipient-name"></div>
+                        <label for="projectname" class="control-label col-sm-2">项目名称:</label>
+                        <div class="col-sm-10"><input type="text" class="form-control" id="projectname">
+                        </div>
                     </div>
                 </form>
             </div>
@@ -52,32 +53,57 @@
         </div>
     </div>
 </div>
-<script>
-    function select() {
-        $('#exampleModal').modal('hide');
-        var table = $('table').DataTable();
-        var selectedRows = table.rows({ selected: true }).data();
-        $.each(selectedRows, function(index, value) {
-            alert(index + ': ' + value);
-            alert(value[0]);
-            alert(value[1]);
-        });
-    }
-    function testGet() {
-        $.post("/Home/Test", { name: $('#recipient-name').val() }, function (result) {
-            //AddTalbeRow(result);
-            $('#exampleModal').modal('hide');
-        });
-    }
+@section scripts
+{
+    <script>
+        function select() {
+            if ($('#newProjectForm').valid()) {
+                $('#exampleModal').modal('hide');
+                var table = $('table').DataTable();
+                var selectedRows = table.rows({ selected: true }).data();
+                $.each(selectedRows, function(index, value) {
+                    alert(index + ': ' + value);
+                    alert(value[0]);
+                    alert(value[1]);
+                });
+            }
+        }
 
-    function AddTalbeRow(project) {
-        $('table > tbody > tr:first').before('<tr><td>' + project.Id + '</td><td>' + project.Name + '</td></tr>');
-    }
+        function testGet() {
+            $.post("/Home/Test", { name: $('#projectname').val() }, function(result) {
+                //AddTalbeRow(result);
+                $('#exampleModal').modal('hide');
+            });
+        }
 
-    window.onload = function() {
-        $('table').DataTable({
-            "language": { "url": "//cdn.datatables.net/plug-ins/1.10.8/i18n/Chinese.json" },
-            "select": { style: "multi" }
+        function AddTalbeRow(project) {
+            $('table > tbody > tr:first').before('<tr><td>' + project.Id + '</td><td>' + project.Name + '</td></tr>');
+        }
+
+        $(document).ready(function () {
+            $('#newProjectForm').validate({
+                rules: {
+                    projectname: { required: true }
+                },
+                messages: {
+                    projectname: "请输入项目名称"
+                }
+            });
         });
-    };
-</script>
+
+        window.onload = function () {
+            $('table').DataTable({
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.10.8/i18n/Chinese.json",
+                    select: {
+                        rows: {
+                            _: '已选%d行',
+                            0: ''
+                        }
+                    }
+                },
+                select: { style: "multi" }
+            });
+        };
+    </script>
+}
