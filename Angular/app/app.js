@@ -3,7 +3,8 @@
 // Declare app level module which depends on views, and components
 angular.module('eLearning', [
         'ui.router',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'ui.validate'
     ])
     .config([
         '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {

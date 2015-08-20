@@ -1,17 +1,17 @@
-﻿<div>
+﻿<form name="form.userForm" class="form-horizontal" ng-submit="submitForm()" novalidate>
     <div class="modal-header">
-        <h3>I am a modal!</h3>
+        <h3 class="modal-title">新建项目</h3>
     </div>
     <div class="modal-body">
-        <ul>
-            <li ng-repeat="item in items">
-                <a ng-click="selected.item = item">{{ item }}</a>
-            </li>
-        </ul>
-        Selected: <b>{{ selected.item }}</b>
+            <div class="form-group">
+                <label class="control-label col-sm-2">项目名称:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="newProject.Name" required>
+                </div>
+            </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ok()">OK</button>
-        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-default" ng-click="cancel()">取消</button>
+        <button class="btn btn-primary" ng-disabled="form.userForm.$invalid">确认新建</button>
     </div>
-</div>
+</form>
