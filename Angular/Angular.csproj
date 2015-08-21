@@ -117,6 +117,10 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="scripts\respond.js" />
+    <Content Include="scripts\respond.matchmedia.addListener.js" />
+    <Content Include="scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="scripts\respond.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

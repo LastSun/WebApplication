@@ -9,12 +9,13 @@ angular.module('eLearning').controller('ProjectCtrl', function($scope, $modal) {
         $scope.open = function() {
             var modalInstance = $modal.open({
                 scope: $scope,
-                templateUrl: 'app/Project/Modal.html'
+                templateUrl: 'app/Project/Modal.html',
+                backdrop: 'static'
             });
 
-            modalInstance.result.then(function (newProject) {
+            modalInstance.result.then(function(newProject) {
                 alert(newProject.Name);
-            }, function() {
+            }, function(err) {
                 alert('Error!');
             });
 
@@ -22,17 +23,13 @@ angular.module('eLearning').controller('ProjectCtrl', function($scope, $modal) {
                 Name: ''
             };
 
-            $scope.ok = function () {
-                modalInstance.close($scope.newProject);
-            };
-
-            $scope.submitForm= function() {
-                if ($scope.form.userForm.$valid) {
+            $scope.submitForm = function(isValid) {
+                if (isValid) {
                     modalInstance.close($scope.newProject);
                 }
             }
 
-            $scope.cancel = function () {
+            $scope.cancel = function() {
                 modalInstance.dismiss('cancel');
             };
         }
