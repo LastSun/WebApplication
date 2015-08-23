@@ -3,10 +3,31 @@
 // Declare app level module which depends on views, and components
 angular.module('eLearning', [
         'ui.router',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'ngResource'
     ])
+    .factory('$exceptionHandler', function() {
+        return function(exception, cause) {
+            alert(exception);
+            alert(cause);
+        };
+    })
+    .config(function($httpProvider) {
+        $httpProvider.interceptors.push(function($q) {
+            return {
+                response: function(response) {
+                    return response;
+                },
+                responseError: function(response) {
+                    return $q.reject(response);
+                }
+            }
+        });
+    })
     .config([
-        '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+        '$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.otherwise('/index.html');
+
             $stateProvider
                 .state('home', {
                     url: '/home',
@@ -23,4 +44,5 @@ angular.module('eLearning', [
                     template: '<h1>View2</h1>'
                 });
         }
-    ]);
+    ])
+;
