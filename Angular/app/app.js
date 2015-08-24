@@ -4,7 +4,9 @@
 angular.module('eLearning', [
         'ui.router',
         'ui.bootstrap',
-        'ngResource'
+        'ngTable',
+        'ngResource',
+        'smart-table'
     ])
     .factory('$exceptionHandler', function() {
         return function(exception, cause) {

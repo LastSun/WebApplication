@@ -22,6 +22,47 @@
                 </tbody>
             </table>
         </div>
-        <pagination class="pull-right" total-items="projects.length" ng-model="currentPage" items-per-page="2" boundary-links="true" ng-change="pageChanged()" first-text="首页" last-text="末页" previous-text="上一页" next-text="下一页"></pagination>
+        <!--<pagination class="pull-right" total-items="projects.length" ng-model="currentPage" items-per-page="2" boundary-links="true" ng-change="pageChanged()" first-text="首页" last-text="末页" previous-text="上一页" next-text="下一页"></pagination>-->
+    </div>
+    <div class="row">
+        <!--<div class="table-responsive">-->
+        <p><strong>Page:</strong> {{tableParams.page()}}
+        </p>
+        <table ng-table="tableParams" class="table table-hover table-condensed">
+            <tr ng-repeat="project in $data">
+                <td data-title="'项目编号'">{{project.id}}</td>
+                <td data-title="'项目名称'">{{project.name}}</td>
+            </tr>
+        </table>
+        <!--</div>-->
+    </div>
+    <div class="row">
+        <table st-table="rowCollection" class="table table-striped">
+            <thead>
+            <tr>
+                <th>first name</th>
+                <th>last name</th>
+                <th>birth date</th>
+                <th>balance</th>
+                <th>email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in rowCollection">
+                <td>{{row.firstName}}</td>
+                <td>{{row.lastName}}</td>
+                <td>{{row.birthDate}}</td>
+                <td>{{row.balance}}</td>
+                <td>{{row.email}}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
 </div>
