@@ -1,44 +1,40 @@
 ﻿'use strict';
 
 angular.module('eLearning').controller('ProjectCtrl', function($scope, $modal, $resource) {
-        $scope.project = {
-            Id: 1,
-            Name: 'Benz'
-        };
-
         var Project = $resource('api/project/:id');
+
+        $scope.projects = Project.query();
+        $scope.pageChanged= function() {
+            var a = $scope.currentPage;
+        }
 
         $scope.open = function() {
             var modalInstance = $modal.open({
                 scope: $scope,
                 templateUrl: 'app/Project/Modal.html',
-                backdrop: 'static'
-            });
+                backdrop: 'static',
+                controller: function($scope, $modalInstance) {
+                    $scope.newProject = {
+                        Name: ''
+                    };
 
-            modalInstance.result.then(function(newProject) {
-                alert(newProject.Name);
-                Project.save(newProject, function(result) {
-                    var a = result;
-                }, function(result) {
-                    var a = result;
-                });
-            }, function(err) {
-                alert(err);
-            });
+                    $scope.submitForm = function(isValid) {
+                        if (isValid) {
+                            modalInstance.close($scope.newProject);
+                        }
+                    }
 
-            $scope.newProject = {
-                Name: ''
-            };
+                    $scope.cancel = function() {
+                        modalInstance.dismiss('cancel');
+                    };
 
-            $scope.submitForm = function(isValid) {
-                if (isValid) {
-                    modalInstance.close($scope.newProject);
+                    $modalInstance.result.then(function(newProject) {
+                        Project.save(newProject, function(newAddedProject) {
+                            $scope.projects.push(newAddedProject);
+                        });
+                    });
                 }
-            }
-
-            $scope.cancel = function() {
-                modalInstance.dismiss('cancel');
-            };
+            });
         }
     }
 );

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -10,37 +12,46 @@ namespace Angular.Controllers
 {
     public class ProjectController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        private readonly ApplicationDbContext _db;
+
+        public ProjectController()
         {
-            return new string[] { "value1", "value2" };
+            _db = new ApplicationDbContext();
+        }
+
+        // GET api/<controller>
+        public IEnumerable<Project> Get()
+        {
+            return _db.Project.AsQueryable();
         }
 
         // GET api/<controller>/5
-        public object Get(int id)
+        public Project Get(int id)
         {
-            throw new Exception();
-            return new {name = "SDF"};
+            return _db.Project.Find(id);
         }
 
         // POST api/<controller>
-        public void Post([FromBody]Project project)
+        public Project Post(Project newProject)
         {
-            using (var db = new ApplicationDbContext())
-            {
-                db.Project.Add(project);
-                db.SaveChanges();
-            }
+            _db.Project.Add(newProject);
+            _db.SaveChanges();
+            return newProject;
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, Project project)
         {
+            _db.Project.AddOrUpdate(project);
+            _db.SaveChanges();
         }
 
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
+            var deleteProject = _db.Project.Find(id);
+            _db.Project.Remove(deleteProject);
+            _db.SaveChanges();
         }
     }
 }

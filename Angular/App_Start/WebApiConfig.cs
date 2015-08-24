@@ -22,11 +22,11 @@ namespace Angular
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new {id = RouteParameter.Optional}
                 );
-            config.Routes.MapHttpRoute(
-                name: "Error",
-                routeTemplate: "{*url}",
-                defaults: new { controller = "Error", action = "Handle" }
-                );
+            //config.Routes.MapHttpRoute(
+            //    name: "Error",
+            //    routeTemplate: "{*url}",
+            //    defaults: new { controller = "Error", action = "Handle" }
+            //    );
         }
     }
 }

@@ -3,9 +3,9 @@
         <h1>项目管理</h1>
     </div>
     <div class="row">
-        <button type="button" class="btn btn-primary" ng-click="open()">新建项目</button>
+        <button type="button" class="btn btn-primary pull-right" ng-click="open()">新建项目</button>
     </div>
-    <div class="row">{{projects.name}}
+    <div class="row">
         <div class="table-responsive">
             <table class="table table-hover table-condensed">
                 <thead>
@@ -14,7 +14,7 @@
                     <th>项目名称</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody ng-repeat="project in projects">
                 <tr>
                     <td>{{project.Id}}</td>
                     <td>{{project.Name}}</td>
@@ -22,5 +22,6 @@
                 </tbody>
             </table>
         </div>
+        <pagination class="pull-right" total-items="projects.length" ng-model="currentPage" items-per-page="2" boundary-links="true" ng-change="pageChanged()" first-text="首页" last-text="末页" previous-text="上一页" next-text="下一页"></pagination>
     </div>
 </div>
