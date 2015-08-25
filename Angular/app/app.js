@@ -4,7 +4,6 @@
 angular.module('eLearning', [
         'ui.router',
         'ui.bootstrap',
-        'ngTable',
         'ngResource',
         'smart-table'
     ])

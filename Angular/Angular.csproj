@@ -92,6 +92,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\Project\ConfirmModal.html" />
     <Content Include="app\Project\Modal.html" />
     <Content Include="app\Project\Project.html" />
     <Content Include="app\Project\Project.js" />
@@ -99,8 +100,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\ng-table.css" />
-    <Content Include="Content\ng-table.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Index.html" />
@@ -128,14 +127,11 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="scripts\angular-animate.min.js.map" />
     <Content Include="scripts\angular-resource.min.js.map" />
-    <Content Include="Content\ng-table.less" />
-    <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
-    <Content Include="scripts\jquery-1.9.1.js" />
-    <Content Include="scripts\jquery-1.9.1.min.js" />
-    <Content Include="scripts\ng-table.js" />
-    <Content Include="scripts\ng-table.min.js" />
+    <None Include="scripts\jquery-1.11.3.intellisense.js" />
+    <Content Include="scripts\jquery-1.11.3.js" />
+    <Content Include="scripts\jquery-1.11.3.min.js" />
     <Content Include="scripts\respond.js" />
     <Content Include="scripts\respond.matchmedia.addListener.js" />
     <Content Include="scripts\respond.matchmedia.addListener.min.js" />
@@ -156,8 +152,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="scripts\angular.min.js.map" />
-    <Content Include="scripts\jquery-1.9.1.min.map" />
-    <Content Include="scripts\ng-table.min.js.map" />
+    <Content Include="scripts\jquery-1.11.3.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
