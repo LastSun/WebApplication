@@ -96,6 +96,8 @@
     <Content Include="app\Project\Modal.html" />
     <Content Include="app\Project\Project.html" />
     <Content Include="app\Project\Project.js" />
+    <Content Include="app\Project\TableFunction.html" />
+    <Content Include="app\Project\TableFunction.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

@@ -3,17 +3,18 @@
 angular.module('eLearning').controller('ProjectCtrl', function($scope, $modal, $resource) {
         var Project = $resource('api/project/:id');
         $scope.displayPerPage = 10;
-
-        $scope.projects = Project.query(function(data) {
+        $scope.testData = '10';
+        $scope.dataItems = [{ Id: 3 }, { Id: 4 }];
+        $scope.projects = Project.query(function (data) {
             $scope.sourceProject = data;
             $scope.displayedProject = [].concat($scope.sourceProject);
         });
 
-        $scope.selectAll = function(isSelecte) {
-            angular.forEach($scope.displayedProject, function(project) {
-                project.isSelected = isSelecte;
-            });
-        }
+        //$scope.selectAll = function(isSelecte) {
+        //    angular.forEach($scope.displayedProject, function(project) {
+        //        project.isSelected = isSelecte;
+        //    });
+        //}
 
         $scope.edit = function(editProject) {
             $modal.open({
