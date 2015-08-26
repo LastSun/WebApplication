@@ -34,7 +34,7 @@ namespace Angular.Controllers
         // POST api/<controller>
         public Project Post(Project newProject)
         {
-            _db.Project.Add(newProject);
+            _db.Project.AddOrUpdate(newProject);
             _db.SaveChanges();
             return newProject;
         }

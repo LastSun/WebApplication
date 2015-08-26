@@ -4,7 +4,7 @@ angular.module('eLearning').directive('tablefunction', [
     '$modal',
     function($modal) {
         return {
-            scope: { source: '=', itemsPerPage: '=',testObject:'=', triggerCreateData:'&', executeCreate: '=', executeEdit: '&', executeDelete: '&', executeExport: '&' },
+            scope: { source: '=', itemsPerPage: '=', openModal: '=', triggerModal: '=', executeCreate: '=', executeEdit: '=', executeDelete: '=', executeExport: '=' },
             templateUrl: 'app/Project/TableFunction.html',
             link: function(scope, element, attrs, ctrls) {
                 scope.selectAll = function(isSelect) {
@@ -26,11 +26,7 @@ angular.module('eLearning').directive('tablefunction', [
                     });
                 }
 
-                scope.testObject= function() {
-                    var a = 1;
-                }
-
-                scope.testObject.fun = function (pModalPath, pDataItem) {
+                scope.openModal = function (pModalPath, pDataItem) {
                     $modal.open({
                         scope: scope,
                         templateUrl: pModalPath,
@@ -38,16 +34,13 @@ angular.module('eLearning').directive('tablefunction', [
                         resolve: {
                             dataItem: function() { return pDataItem; }
                         },
-                        controller: function ($scope, $modalInstance, dataItem) {
+                        controller: function($scope, $modalInstance, dataItem) {
                             $scope.dataItem = dataItem;
-                            $scope.submitForm = function () {
-                                dataItem.isCreate = true;
-                                $modalInstance.close(dataItem);
-                            }
+                            $scope.submitForm = function() { $modalInstance.close(dataItem); }
                             $scope.cancel = function() { $modalInstance.dismiss('cancel'); };
                         }
                     }).result.then(function(resultDataItem) {
-                        resultDataItem.isCreate ? scope.executeCreate(resultDataItem) : scope.executeEdit(resultDataItem);
+                        resultDataItem.IsCreate ? scope.executeCreate(resultDataItem) : scope.executeEdit(resultDataItem);
                     });
                 }
             }
