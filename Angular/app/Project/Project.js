@@ -2,19 +2,34 @@
 
 angular.module('eLearning').controller('ProjectCtrl', function($scope, $modal, $resource) {
         var Project = $resource('api/project/:id');
-        $scope.displayPerPage = 10;
-        $scope.testData = '10';
-        $scope.dataItems = [{ Id: 3 }, { Id: 4 }];
-        $scope.projects = Project.query(function (data) {
+        $scope.itemsPerPage = 10;
+
+        $scope.projects = Project.query(function(data) {
             $scope.sourceProject = data;
             $scope.displayedProject = [].concat($scope.sourceProject);
         });
 
-        //$scope.selectAll = function(isSelecte) {
-        //    angular.forEach($scope.displayedProject, function(project) {
-        //        project.isSelected = isSelecte;
-        //    });
-        //}
+        $scope.executeDelete = function() {
+            var a = 1;
+        }
+
+        $scope.executeExport = function() {
+            var a = 1;
+        }
+
+        $scope.executeCreate = function(createdProject) {
+            var a = createdProject;
+        }
+
+        $scope.executeEdit= function(editedProject) {
+            var a = editedProject;
+        }
+
+        //$scope.testObject={}
+        $scope.triggerCreateData = function () {
+            $scope.testObject();
+            $scope.testObject.fun('app/Project/ProjectModal.html', {Name:'SDF'});
+        }
 
         $scope.edit = function(editProject) {
             $modal.open({
@@ -40,28 +55,6 @@ angular.module('eLearning').controller('ProjectCtrl', function($scope, $modal, $
 
                     $modalInstance.result.then(function(newProject) {
 
-                    });
-                }
-            });
-        }
-
-        $scope.delete = function() {
-            $modal.open({
-                scope: $scope,
-                templateUrl: 'app/Project/ConfirmModal.html',
-                backdrop: 'static',
-                controller: function($scope, $modalInstance) {
-
-                    $scope.ok = function() {
-                        $modalInstance.close();
-                    }
-
-                    $scope.cancel = function() {
-                        $modalInstance.dismiss('cancel');
-                    };
-
-                    $modalInstance.result.then(function(result) {
-                        var a = result;
                     });
                 }
             });

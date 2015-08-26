@@ -93,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\Project\ConfirmModal.html" />
-    <Content Include="app\Project\Modal.html" />
+    <Content Include="app\Project\ProjectModal.html" />
     <Content Include="app\Project\Project.html" />
     <Content Include="app\Project\Project.js" />
     <Content Include="app\Project\TableFunction.html" />
