@@ -7,10 +7,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CodeFirstModelFromDB
 {
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public partial class AngularDbContext : IdentityDbContext<User>
     {
-        public ApplicationDbContext()
-            : base("ELearning1", throwIfV1Schema: false)
+        public AngularDbContext() : base("name=ELearningContainer")
         {
         }
 
@@ -21,10 +20,12 @@ namespace CodeFirstModelFromDB
         public virtual DbSet<Courseware> Courseware { get; set; }
         public virtual DbSet<Paper> Paper { get; set; }
         public virtual DbSet<Project> Project { get; set; }
+        public virtual DbSet<Quiz> Quiz { get; set; }
+        //public virtual DbSet<User> User { get; set; }
 
-        public static ApplicationDbContext Create()
+        public static AngularDbContext Create()
         {
-            return new ApplicationDbContext();
+            return new AngularDbContext();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -36,6 +37,7 @@ namespace CodeFirstModelFromDB
             modelBuilder.Entity<IdentityUserLogin>().ToTable("Login");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("Claim");
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+
             modelBuilder.Entity<Class>()
                 .HasMany(e => e.Course)
                 .WithMany(e => e.Class)
@@ -50,6 +52,11 @@ namespace CodeFirstModelFromDB
                 .HasMany(e => e.Action_UserCourse)
                 .WithRequired(e => e.Course)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Course>()
+                .HasMany(e => e.Project)
+                .WithMany(e => e.Course)
+                .Map(m => m.ToTable("Project_Course"));
 
             modelBuilder.Entity<Quiz>()
                 .HasMany(e => e.Action_UserQuiz)

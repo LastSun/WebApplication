@@ -2,7 +2,7 @@
     <div class="row">
         <h1>项目管理</h1>
     </div>
-    <div tableFunction class="row" data-source="displayedProject" items-per-page="itemsPerPage" open-modal="openModal" trigger-modal="triggerModal" execute-create="executeCreate" execute-edit="executeEdit" execute-delete="executeDelete" execute-export="executeExport"></div>
+    <div tableFunction class="row" data-resource-url="'api/project/:id'" trigger-edit-data="triggerEditData" edit-data="editData" data-source="sourceProject" data-displayed-source="displayedProject" items-per-page="itemsPerPage"></div>
     <div class="row">
         <div class="table-responsive">
             <table st-table="displayedProject" st-safe-src="sourceProject" class="table table-hover table-condensed">
@@ -15,13 +15,13 @@
                 <tbody>
                 <tr ng-repeat="project in displayedProject" st-select-row="project" st-select-mode="multiple">
                     <td>{{project.Id}}</td>
-                    <td><button type="button" class="btn btn-link btn-xs" ng-click="triggerModal(project)">{{project.Name}}</button></td>
+                    <td><button type="button" class="btn btn-link btn-xs" ng-click="triggerCreateData(project)">{{project.Name}}</button></td>
                 </tr>
                 </tbody>
                 <tfoot>
                 <tr>
                     <td colspan="5" class="text-center">
-                        <div st-pagination="" st-items-by-page="2"></div>
+                        <div st-pagination="" st-items-by-page="itemsPerPage"></div>
                     </td>
                 </tr>
                 </tfoot>
@@ -29,16 +29,3 @@
         </div>
     </div>
 </div>
-<style type="text/css">
-    .st-sort-ascent:after {
-        content: '\25B2';
-    }
-
-    .st-sort-descent:after {
-        content: '\25BC';
-    }
-    .st-selected {
-        background: #216eff !important;
-        color: white !important;
-    }
-</style>

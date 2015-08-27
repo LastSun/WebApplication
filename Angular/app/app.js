@@ -40,6 +40,11 @@ angular.module('eLearning', [
                     templateUrl: 'app/Project/project.html',
                     controller: 'ProjectCtrl'
                 })
+                .state('user', {
+                    url: '/user',
+                    templateUrl: 'app/User/User.html',
+                    controller: 'UserCtrl'
+                })
                 .state('about', {
                     url: '/about',
                     template: '<h1>View2</h1>'

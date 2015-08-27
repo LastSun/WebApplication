@@ -12,11 +12,11 @@ namespace Angular.Controllers
 {
     public class ProjectController : ApiController
     {
-        private readonly ApplicationDbContext _db;
+        private readonly AngularDbContext _db;
 
         public ProjectController()
         {
-            _db = new ApplicationDbContext();
+            _db = new AngularDbContext();
         }
 
         // GET api/<controller>

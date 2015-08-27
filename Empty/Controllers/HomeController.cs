@@ -20,7 +20,7 @@ namespace Empty.Controllers
         public ActionResult Test(string name)
         {
             var project = new Project { Name = name };
-            using (var db = new ApplicationDbContext())
+            using (var db = new AngularDbContext())
             {
                 db.Project.Add(project);
                 db.SaveChanges();
@@ -30,7 +30,7 @@ namespace Empty.Controllers
 
         public ActionResult Index2()
         {
-            var db = new ApplicationDbContext();
+            var db = new AngularDbContext();
             var data = from project in db.Project select project;
             return View(data);
         }

@@ -15,7 +15,7 @@ namespace Empty
         public void Configuration(IAppBuilder app)
         {
             // 配置数据库上下文、用户管理器和登录管理器，以便为每个请求使用单个实例
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(AngularDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 

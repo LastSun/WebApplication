@@ -92,16 +92,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\Project\ConfirmModal.html" />
+    <Content Include="app\ConfirmModal.html" />
     <Content Include="app\Project\ProjectModal.html" />
     <Content Include="app\Project\Project.html" />
     <Content Include="app\Project\Project.js" />
-    <Content Include="app\Project\TableFunction.html" />
-    <Content Include="app\Project\TableFunction.js" />
+    <Content Include="app\TableFunction.html" />
+    <Content Include="app\TableFunction.js" />
+    <Content Include="app\User\User.html" />
+    <Content Include="app\User\User.js" />
+    <Content Include="app\User\UserModal.html" />
+    <Content Include="App_Data\Angular.mdf" />
+    <Content Include="App_Data\Angular_log.ldf">
+      <DependentUpon>Angular.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\smart-table.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Index.html" />
@@ -163,7 +171,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

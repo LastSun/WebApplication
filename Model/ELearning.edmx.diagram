@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="66b05735621c4bf9be8709d426632737" Name="Diagram1" ZoomLevel="77" ShowGrid="true" >
+      <Diagram DiagramId="66b05735621c4bf9be8709d426632737" Name="Diagram1" ZoomLevel="88" ShowGrid="true" >
         <EntityTypeShape EntityType="ELearning.Course" Width="1.5" PointX="5.375" PointY="0.875" />
         <EntityTypeShape EntityType="ELearning.Project" Width="1.5" PointX="5.375" PointY="4.125" />
         <EntityTypeShape EntityType="ELearning.Class" Width="1.5" PointX="7.875" PointY="4.125" />
         <EntityTypeShape EntityType="ELearning.Courseware" Width="1.5" PointX="2.875" PointY="0.875" />
         <EntityTypeShape EntityType="ELearning.Paper" Width="1.5" PointX="0.5" PointY="4.125" />
         <EntityTypeShape EntityType="ELearning.Quiz" Width="1.5" PointX="2.875" PointY="4.125" />
-        <EntityTypeShape EntityType="ELearning.Claim" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ELearning.Claim" Width="1.5" PointX="2.875" PointY="9.75" />
         <EntityTypeShape EntityType="ELearning.Login" Width="1.5" PointX="7.875" PointY="9.875" />
         <EntityTypeShape EntityType="ELearning.Role" Width="1.5" PointX="7.875" PointY="7.875" />
         <EntityTypeShape EntityType="ELearning.User" Width="1.5" PointX="5.375" PointY="6.875" />
         <EntityTypeShape EntityType="ELearning.Action_UserCourse" Width="1.5" PointX="9" PointY="0.875" />
-        <EntityTypeShape EntityType="ELearning.Action_UserQuiz" Width="1.5" PointX="2.75" PointY="7.375" />
+        <EntityTypeShape EntityType="ELearning.Action_UserQuiz" Width="1.5" PointX="2.875" PointY="7.375" />
         <AssociationConnector Association="ELearning.Class_Course" />
         <AssociationConnector Association="ELearning.Action_UserCourse_Course" />
         <AssociationConnector Association="ELearning.Project_Quiz" />
@@ -28,11 +28,11 @@
         <AssociationConnector Association="ELearning.Action_UserQuiz_Quiz" />
         <AssociationConnector Association="ELearning.Course_Courseware" />
         <AssociationConnector Association="ELearning.Quiz_Course" />
-        <AssociationConnector Association="ELearning.Project_Course" />
         <AssociationConnector Association="ELearning.Quiz_Paper" />
         <AssociationConnector Association="ELearning.Project_Class" />
         <AssociationConnector Association="ELearning.User_Class" />
         <AssociationConnector Association="ELearning.User_Claim" />
+        <AssociationConnector Association="ELearning.Project_Course" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

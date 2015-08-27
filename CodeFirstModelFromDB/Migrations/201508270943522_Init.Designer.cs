@@ -7,13 +7,13 @@ namespace CodeFirstModelFromDB.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddProjectName : IMigrationMetadata
+    public sealed partial class Init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddProjectName));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201508181303467_AddProjectName"; }
+            get { return "201508270943522_Init"; }
         }
         
         string IMigrationMetadata.Source

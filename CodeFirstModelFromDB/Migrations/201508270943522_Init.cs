@@ -3,7 +3,7 @@ namespace CodeFirstModelFromDB.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -26,13 +26,10 @@ namespace CodeFirstModelFromDB.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        ProjectId = c.Int(nullable: false),
                         CoursewareId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Project", t => t.ProjectId, cascadeDelete: true)
                 .ForeignKey("dbo.Courseware", t => t.CoursewareId)
-                .Index(t => t.ProjectId)
                 .Index(t => t.CoursewareId);
             
             CreateTable(
@@ -198,11 +195,26 @@ namespace CodeFirstModelFromDB.Migrations
                 .Index(t => t.Class_Id)
                 .Index(t => t.User_Id);
             
+            CreateTable(
+                "dbo.Project_Course",
+                c => new
+                    {
+                        Course_Id = c.Int(nullable: false),
+                        Project_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Course_Id, t.Project_Id })
+                .ForeignKey("dbo.Course", t => t.Course_Id)
+                .ForeignKey("dbo.Project", t => t.Project_Id)
+                .Index(t => t.Course_Id)
+                .Index(t => t.Project_Id);
+            
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.User_Role", "RoleId", "dbo.Role");
+            DropForeignKey("dbo.Project_Course", "Project_Id", "dbo.Project");
+            DropForeignKey("dbo.Project_Course", "Course_Id", "dbo.Course");
             DropForeignKey("dbo.Course", "CoursewareId", "dbo.Courseware");
             DropForeignKey("dbo.User_Class", "User_Id", "dbo.User");
             DropForeignKey("dbo.User_Class", "Class_Id", "dbo.Class");
@@ -216,11 +228,12 @@ namespace CodeFirstModelFromDB.Migrations
             DropForeignKey("dbo.Claim", "UserId", "dbo.User");
             DropForeignKey("dbo.Action_UserQuiz", "UserId", "dbo.User");
             DropForeignKey("dbo.Action_UserCourse", "UserId", "dbo.User");
-            DropForeignKey("dbo.Course", "ProjectId", "dbo.Project");
             DropForeignKey("dbo.Class", "ProjectId", "dbo.Project");
             DropForeignKey("dbo.Class_Course", "Course_Id", "dbo.Course");
             DropForeignKey("dbo.Class_Course", "Class_Id", "dbo.Class");
             DropForeignKey("dbo.Action_UserCourse", "CourseId", "dbo.Course");
+            DropIndex("dbo.Project_Course", new[] { "Project_Id" });
+            DropIndex("dbo.Project_Course", new[] { "Course_Id" });
             DropIndex("dbo.User_Class", new[] { "User_Id" });
             DropIndex("dbo.User_Class", new[] { "Class_Id" });
             DropIndex("dbo.Class_Course", new[] { "Course_Id" });
@@ -239,9 +252,9 @@ namespace CodeFirstModelFromDB.Migrations
             DropIndex("dbo.Quiz", new[] { "ProjectId" });
             DropIndex("dbo.Class", new[] { "ProjectId" });
             DropIndex("dbo.Course", new[] { "CoursewareId" });
-            DropIndex("dbo.Course", new[] { "ProjectId" });
             DropIndex("dbo.Action_UserCourse", new[] { "CourseId" });
             DropIndex("dbo.Action_UserCourse", new[] { "UserId" });
+            DropTable("dbo.Project_Course");
             DropTable("dbo.User_Class");
             DropTable("dbo.Class_Course");
             DropTable("dbo.Role");

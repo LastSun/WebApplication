@@ -5,15 +5,14 @@ namespace CodeFirstModelFromDB.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<CodeFirstModelFromDB.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<CodeFirstModelFromDB.AngularDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "CodeFirstModelFromDB.ApplicationDbContext";
         }
 
-        protected override void Seed(CodeFirstModelFromDB.ApplicationDbContext context)
+        protected override void Seed(CodeFirstModelFromDB.AngularDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

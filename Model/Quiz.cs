@@ -26,9 +26,9 @@ namespace Model
         public Nullable<int> PaperId { get; set; }
     
         public virtual Project Project { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Action_UserQuiz> Action_User_Quiz { get; set; }
         public virtual Course Course { get; set; }
         public virtual Paper Paper { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Action_UserQuiz> Action_User_Quiz { get; set; }
     }
 }

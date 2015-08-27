@@ -21,7 +21,7 @@ namespace Empty
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<User>(context.Get<ApplicationDbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<User>(context.Get<AngularDbContext>()));
             // 配置用户名的验证逻辑
             manager.UserValidator = new UserValidator<User>(manager)
             {

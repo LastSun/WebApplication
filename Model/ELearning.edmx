@@ -21,6 +21,7 @@
     <EntitySet Name="Class_Course" EntityType="ELearning.Store.Class_Course" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="User_Role" EntityType="ELearning.Store.User_Role" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="User_Class" EntityType="ELearning.Store.User_Class" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Project_Course" EntityType="ELearning.Store.Project_Course" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Class_Course_Class" Association="ELearning.Store.FK_Class_Course_Class">
       <End Role="Class" EntitySet="Class" />
       <End Role="Class_Course" EntitySet="Class_Course" />
@@ -73,10 +74,6 @@
       <End Role="Quiz" EntitySet="Quiz" />
       <End Role="Course" EntitySet="Course" />
     </AssociationSet>
-    <AssociationSet Name="Project_Course" Association="ELearning.Store.Project_Course">
-      <End Role="Project" EntitySet="Project" />
-      <End Role="Course" EntitySet="Course" />
-    </AssociationSet>
     <AssociationSet Name="Quiz_Paper" Association="ELearning.Store.Quiz_Paper">
       <End Role="Quiz" EntitySet="Quiz" />
       <End Role="Paper" EntitySet="Paper" />
@@ -97,13 +94,20 @@
       <End Role="User" EntitySet="User" />
       <End Role="Claim" EntitySet="Claim" />
     </AssociationSet>
+    <AssociationSet Name="FK_Project_Course_Project" Association="ELearning.Store.FK_Project_Course_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Project_Course" EntitySet="Project_Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_Course_Course" Association="ELearning.Store.FK_Project_Course_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Project_Course" EntitySet="Project_Course" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Course">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ProjectId" Type="int" Nullable="false" />
     <Property Name="CoursewareId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Project">
@@ -224,6 +228,14 @@
     <Property Name="User_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="Class_Id" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Project_Course">
+    <Key>
+      <PropertyRef Name="Project_Id" />
+      <PropertyRef Name="Course_Id" />
+    </Key>
+    <Property Name="Project_Id" Type="int" Nullable="false" />
+    <Property Name="Course_Id" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="Action_UserCourse_Course">
     <End Role="Course" Type="ELearning.Store.Course" Multiplicity="1" />
     <End Role="Action_UserCourse" Type="ELearning.Store.Action_UserCourse" Multiplicity="*" />
@@ -335,20 +347,6 @@
       </Principal>
       <Dependent Role="Quiz">
         <PropertyRef Name="CourseId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Project_Course">
-    <End Role="Project" Type="ELearning.Store.Project" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Course" Type="ELearning.Store.Course" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Project">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Course">
-        <PropertyRef Name="ProjectId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -464,6 +462,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Project_Course_Project">
+    <End Role="Project" Type="ELearning.Store.Project" Multiplicity="1" />
+    <End Role="Project_Course" Type="ELearning.Store.Project_Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project_Course">
+        <PropertyRef Name="Project_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_Course_Course">
+    <End Role="Project_Course" Type="ELearning.Store.Project_Course" Multiplicity="*" />
+    <End Role="Course" Type="ELearning.Store.Course" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project_Course">
+        <PropertyRef Name="Course_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -525,10 +547,6 @@
             <End Role="Quiz" EntitySet="Quiz" />
             <End Role="Course" EntitySet="Course" />
           </AssociationSet>
-          <AssociationSet Name="Project_Course" Association="ELearning.Project_Course">
-            <End Role="Project" EntitySet="Project" />
-            <End Role="Course" EntitySet="Course" />
-          </AssociationSet>
           <AssociationSet Name="Quiz_Paper" Association="ELearning.Quiz_Paper">
             <End Role="Quiz" EntitySet="Quiz" />
             <End Role="Paper" EntitySet="Paper" />
@@ -545,19 +563,22 @@
             <End Role="User" EntitySet="User" />
             <End Role="Claim" EntitySet="Claim" />
           </AssociationSet>
+          <AssociationSet Name="Project_Course" Association="ELearning.Project_Course">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Project" Relationship="ELearning.Project_Course" FromRole="Course" ToRole="Project" />
           <NavigationProperty Name="Class" Relationship="ELearning.Class_Course" FromRole="Course" ToRole="Class" />
-          <NavigationProperty Name="Action_User_Course" Relationship="ELearning.Action_UserCourse_Course" FromRole="Course" ToRole="Action_UserCourse" />
           <NavigationProperty Name="Courseware" Relationship="ELearning.Course_Courseware" FromRole="Course" ToRole="Courseware" />
           <NavigationProperty Name="Quiz" Relationship="ELearning.Quiz_Course" FromRole="Course" ToRole="Quiz" />
-          <NavigationProperty Name="Project" Relationship="ELearning.Project_Course" FromRole="Course" ToRole="Project" />
-          <Property Name="ProjectId" Type="Int32" Nullable="false" />
           <Property Name="CoursewareId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Action_User_Course" Relationship="ELearning.Action_UserCourse_Course" FromRole="Course" ToRole="Action_UserCourse" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -600,10 +621,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProjectId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Project" Relationship="ELearning.Project_Quiz" FromRole="Quiz" ToRole="Project" />
-          <NavigationProperty Name="Action_User_Quiz" Relationship="ELearning.Action_UserQuiz_Quiz" FromRole="Quiz" ToRole="Action_UserQuiz" />
           <NavigationProperty Name="Course" Relationship="ELearning.Quiz_Course" FromRole="Quiz" ToRole="Course" />
           <Property Name="CourseId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Paper" Relationship="ELearning.Quiz_Paper" FromRole="Quiz" ToRole="Paper" />
+          <NavigationProperty Name="Action_User_Quiz" Relationship="ELearning.Action_UserQuiz_Quiz" FromRole="Quiz" ToRole="Action_UserQuiz" />
           <Property Name="PaperId" Type="Int32" Nullable="true" />
         </EntityType>
         <EntityType Name="Claim">
@@ -802,20 +823,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Project_Course">
-          <End Type="ELearning.Project" Role="Project" Multiplicity="1" >
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="ELearning.Course" Role="Course" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Project">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Course">
-              <PropertyRef Name="ProjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Quiz_Paper">
           <End Type="ELearning.Quiz" Role="Quiz" Multiplicity="*" />
           <End Type="ELearning.Paper" Role="Paper" Multiplicity="0..1" />
@@ -860,6 +867,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Project_Course">
+          <End Type="ELearning.Project" Role="Project" Multiplicity="*" />
+          <End Type="ELearning.Course" Role="Course" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -870,7 +881,6 @@
       <EntityTypeMapping TypeName="IsTypeOf(ELearning.Course)">
         <MappingFragment StoreEntitySet="Course">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
           <ScalarProperty Name="CoursewareId" ColumnName="CoursewareId" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -1000,6 +1010,14 @@
       </EndProperty>
       <EndProperty Name="Class">
         <ScalarProperty Name="Id" ColumnName="Class_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Project_Course" TypeName="ELearning.Project_Course" StoreEntitySet="Project_Course">
+      <EndProperty Name="Project">
+        <ScalarProperty Name="Id" ColumnName="Project_Id" />
+      </EndProperty>
+      <EndProperty Name="Course">
+        <ScalarProperty Name="Id" ColumnName="Course_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/13/2015 16:44:28
--- Generated from EDMX file: C:\Users\lasts\documents\visual studio 2015\Projects\WebApplication\Model\ELearning.edmx
+-- Date Created: 08/27/2015 17:26:44
+-- Generated from EDMX file: C:\Users\lasts\Documents\Visual Studio 2015\Projects\WebApplication\Model\ELearning.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [ELearning];
+USE [Angular];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -56,9 +56,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_Quiz_Course]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Quiz] DROP CONSTRAINT [FK_Quiz_Course];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Project_Course]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Course] DROP CONSTRAINT [FK_Project_Course];
-GO
 IF OBJECT_ID(N'[dbo].[FK_Quiz_Paper]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Quiz] DROP CONSTRAINT [FK_Quiz_Paper];
 GO
@@ -73,6 +70,12 @@ IF OBJECT_ID(N'[dbo].[FK_User_Class_Class]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_User_Claim]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Claim] DROP CONSTRAINT [FK_User_Claim];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Project_Course_Project]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Project_Course] DROP CONSTRAINT [FK_Project_Course_Project];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Project_Course_Course]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Project_Course] DROP CONSTRAINT [FK_Project_Course_Course];
 GO
 
 -- --------------------------------------------------
@@ -124,6 +127,9 @@ GO
 IF OBJECT_ID(N'[dbo].[User_Class]', 'U') IS NOT NULL
     DROP TABLE [dbo].[User_Class];
 GO
+IF OBJECT_ID(N'[dbo].[Project_Course]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Project_Course];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -132,7 +138,6 @@ GO
 -- Creating table 'Course'
 CREATE TABLE [dbo].[Course] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [ProjectId] int  NOT NULL,
     [CoursewareId] int  NULL
 );
 GO
@@ -250,6 +255,13 @@ CREATE TABLE [dbo].[User_Class] (
 );
 GO
 
+-- Creating table 'Project_Course'
+CREATE TABLE [dbo].[Project_Course] (
+    [Project_Id] int  NOT NULL,
+    [Course_Id] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -342,6 +354,12 @@ GO
 ALTER TABLE [dbo].[User_Class]
 ADD CONSTRAINT [PK_User_Class]
     PRIMARY KEY CLUSTERED ([User_Id], [Class_Id] ASC);
+GO
+
+-- Creating primary key on [Project_Id], [Course_Id] in table 'Project_Course'
+ALTER TABLE [dbo].[Project_Course]
+ADD CONSTRAINT [PK_Project_Course]
+    PRIMARY KEY CLUSTERED ([Project_Id], [Course_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -531,21 +549,6 @@ ON [dbo].[Quiz]
     ([CourseId]);
 GO
 
--- Creating foreign key on [ProjectId] in table 'Course'
-ALTER TABLE [dbo].[Course]
-ADD CONSTRAINT [FK_Project_Course]
-    FOREIGN KEY ([ProjectId])
-    REFERENCES [dbo].[Project]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_Project_Course'
-CREATE INDEX [IX_FK_Project_Course]
-ON [dbo].[Course]
-    ([ProjectId]);
-GO
-
 -- Creating foreign key on [PaperId] in table 'Quiz'
 ALTER TABLE [dbo].[Quiz]
 ADD CONSTRAINT [FK_Quiz_Paper]
@@ -613,6 +616,30 @@ GO
 CREATE INDEX [IX_FK_User_Claim]
 ON [dbo].[Claim]
     ([UserId]);
+GO
+
+-- Creating foreign key on [Project_Id] in table 'Project_Course'
+ALTER TABLE [dbo].[Project_Course]
+ADD CONSTRAINT [FK_Project_Course_Project]
+    FOREIGN KEY ([Project_Id])
+    REFERENCES [dbo].[Project]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Course_Id] in table 'Project_Course'
+ALTER TABLE [dbo].[Project_Course]
+ADD CONSTRAINT [FK_Project_Course_Course]
+    FOREIGN KEY ([Course_Id])
+    REFERENCES [dbo].[Course]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Project_Course_Course'
+CREATE INDEX [IX_FK_Project_Course_Course]
+ON [dbo].[Project_Course]
+    ([Course_Id]);
 GO
 
 -- --------------------------------------------------

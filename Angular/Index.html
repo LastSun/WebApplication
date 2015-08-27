@@ -5,6 +5,7 @@
     <title></title>
     <meta charset="utf-8"/>
     <link href="Content/bootstrap.css" rel="stylesheet"/>
+    <link href="Content/smart-table.css" rel="stylesheet" />
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -32,7 +33,7 @@
                 <li dropdown>
                     <a href="#" dropdown-toggle>用户管理 <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a ui-sref="#">项目管理</a></li>
+                        <li><a ui-sref="user">用户管理</a></li>
                         <li><a ui-sref="#">项目管理</a></li>
                         <li><a ui-sref="#">项目管理</a></li>
                     </ul>
@@ -62,8 +63,9 @@
 <script src="scripts/angular-ui/ui-bootstrap-tpls.js"></script>
 <script src="scripts/smart-table.js"></script>
 <script src="app/app.js"></script>
+<script src="app/TableFunction.js"></script>
 <script src="app/Home/home.js"></script>
 <script src="app/Project/Project.js"></script>
-<script src="app/Project/TableFunction.js"></script>
+<script src="app/User/User.js"></script>
 </body>
 </html>
