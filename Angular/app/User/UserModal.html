@@ -4,24 +4,18 @@
     </div>
     <div class="modal-body">
         <div class="form-group has-feedback" ng-class="{ 'has-error' : userForm.userName.$invalid && !userForm.userName.$pristine }">
-            <label class="control-label col-sm-3">用户名</label>
+            <label class="control-label col-sm-3">用户名 <span class="glyphicon glyphicon-asterisk" style="color: crimson; font-size:x-small" aria-hidden="true"></span></label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" name="userName" ng-model="dataItem.Name" required>
-                <span class="glyphicon glyphicon-asterisk form-control-feedback" style="color: crimson; font-size: 10px" aria-hidden="true"></span>
-                <p class="help-block" ng-show="userForm.projectName.$invalid && !userForm.projectName.$pristine">请输入用户名</p>
+                <p class="help-block" ng-show="userForm.userName.$invalid && !userForm.userName.$pristine">请输入用户名</p>
             </div>
         </div>
-        <div class="btn-group" dropdown is-open="status.isopen">
-            <button id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
-                Button dropdown <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-                <li role="menuitem"><a href="#">Action</a></li>
-                <li role="menuitem"><a href="#">Another action</a></li>
-                <li role="menuitem"><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li role="menuitem"><a href="#">Separated link</a></li>
-            </ul>
+        <div class="form-group" ng-class="{ 'has-error' : userForm.userProject.$invalid && !userForm.userProject.$pristine }">
+            <label class="control-label col-sm-3">所属项目 <span class="glyphicon glyphicon-asterisk" style="color: crimson; font-size:x-small" aria-hidden="true"></span></label>
+            <div class="col-sm-9">
+                <select class="form-control" name="userProject" ng-model="dataItem.ProjectId" ng-options="project.Id as project.Name for project in dataItem.Projects" required></select>
+                <p class="help-block" ng-show="userForm.userProject.$invalid && !userForm.userProject.$pristine">请选择用户所属项目</p>
+            </div>
         </div>
     </div>
     <div class="modal-footer">

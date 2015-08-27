@@ -32,7 +32,7 @@ angular.module('eLearning').directive('tablefunction', [
                         },
                         controller: function($scope, $modalInstance, dataItem) {
                             $scope.dataItem = dataItem;
-                            $scope.submitForm = function() { $modalInstance.close(dataItem); }
+                            $scope.submitForm = function () { $modalInstance.close($scope.dataItem); }
                             $scope.cancel = function() { $modalInstance.dismiss(); };
                         }
                     }).result.then(function(resultDataItem) {
@@ -63,7 +63,7 @@ angular.module('eLearning').directive('tablefunction', [
                     }).result.then(function () {
                         angular.forEach(scope.source, function (dataItem, key) {
                             if (dataItem.isSelected) {
-                                scope.resource.delete({ id: dataItem.Id }, function () {
+                                scope.resource.remove({ id: dataItem.Id }, function () {
                                     scope.source.splice(key, 1);
                                 });
                             }

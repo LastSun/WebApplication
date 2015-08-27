@@ -22,7 +22,7 @@ namespace Angular.Controllers
         // GET api/<controller>
         public IEnumerable<Project> Get()
         {
-            return _db.Project.AsQueryable();
+            return _db.Project.AsEnumerable();
         }
 
         // GET api/<controller>/5
