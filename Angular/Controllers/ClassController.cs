@@ -10,49 +10,50 @@ using CodeFirstModelFromDB;
 
 namespace Angular.Controllers
 {
-    public class ProjectController : ApiController
+    public class ClassController : ApiController
     {
         private readonly AngularDbContext _db;
-        private readonly DbSet<Project> _projectTable;
+        private readonly DbSet<Class> _classTable;
 
-        public ProjectController()
+
+        public ClassController()
         {
             _db = new AngularDbContext();
-            _projectTable= _db.Project;
+            _classTable = _db.Class;
         }
 
         // GET api/<controller>
-        public IEnumerable<Project> Get()
+        public IEnumerable<Class> Get()
         {
-            return _projectTable.AsQueryable();
+            return _classTable.AsQueryable();
         }
 
         // GET api/<controller>/5
-        public Project Get(int id)
+        public Class Get(int id)
         {
-            return _projectTable.Find(id);
+            return _classTable.Find(id);
         }
 
         // POST api/<controller>
-        public Project Post(Project newProject)
+        public Class Post(Class @class)
         {
-            _projectTable.AddOrUpdate(newProject);
+            _classTable.AddOrUpdate(@class);
             _db.SaveChanges();
-            return newProject;
+            return @class;
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, Project project)
+        public void Put(int id, Class @class)
         {
-            _projectTable.AddOrUpdate(project);
+            _classTable.AddOrUpdate(@class);
             _db.SaveChanges();
         }
 
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
-            var deleteProject = _projectTable.Find(id);
-            _projectTable.Remove(deleteProject);
+            var @class = _classTable.Find(id);
+            _classTable.Remove(@class);
             _db.SaveChanges();
         }
     }

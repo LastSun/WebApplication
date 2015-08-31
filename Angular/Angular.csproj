@@ -51,6 +51,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
@@ -59,6 +63,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -78,9 +86,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http.Formatting">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -92,15 +97,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\ConfirmModal.html" />
-    <Content Include="app\Project\ProjectModal.html" />
-    <Content Include="app\Project\Project.html" />
-    <Content Include="app\Project\Project.js" />
-    <Content Include="app\TableFunction.html" />
-    <Content Include="app\TableFunction.js" />
-    <Content Include="app\User\User.html" />
-    <Content Include="app\User\User.js" />
-    <Content Include="app\User\UserModal.html" />
+    <Content Include="app\class\class.html" />
+    <Content Include="app\class\class.js" />
+    <Content Include="app\class\classModal.html" />
+    <Content Include="app\confirmModal.html" />
+    <Content Include="app\project\projectModal.html" />
+    <Content Include="app\project\project.html" />
+    <Content Include="app\project\project.js" />
+    <Content Include="app\tableFunction.html" />
+    <Content Include="app\tableFunction.js" />
+    <Content Include="app\user\user.html" />
+    <Content Include="app\user\user.js" />
+    <Content Include="app\user\userModal.html" />
     <Content Include="App_Data\Angular.mdf" />
     <Content Include="App_Data\Angular_log.ldf">
       <DependentUpon>Angular.mdf</DependentUpon>
@@ -127,8 +135,8 @@
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular.min.js" />
     <Content Include="app\app.js" />
-    <Content Include="app\Home\home.html" />
-    <Content Include="app\Home\home.js" />
+    <Content Include="app\home\home.html" />
+    <Content Include="app\home\home.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -142,6 +150,7 @@
     <None Include="scripts\jquery-1.11.3.intellisense.js" />
     <Content Include="scripts\jquery-1.11.3.js" />
     <Content Include="scripts\jquery-1.11.3.min.js" />
+    <Content Include="scripts\multiselect-tpls.js" />
     <Content Include="scripts\respond.js" />
     <Content Include="scripts\respond.matchmedia.addListener.js" />
     <Content Include="scripts\respond.matchmedia.addListener.min.js" />
@@ -151,9 +160,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\GlobalExceptionHandler.cs" />
+    <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

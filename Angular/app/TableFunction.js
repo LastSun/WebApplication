@@ -5,7 +5,7 @@ angular.module('eLearning').directive('tablefunction', [
     function ($modal, $resource) {
         return {
             scope: { resourceUrl: '=', triggerEditData: '=', editData: '=', source: '=', displayedSource: '=', itemsPerPage: '=' },
-            templateUrl: 'app/TableFunction.html',
+            templateUrl: 'app/tableFunction.html',
             link: function (scope, element, attrs, ctrls) {
                 scope.resource = $resource(scope.resourceUrl);
                 scope.resource.query(function (data) {
@@ -55,7 +55,7 @@ angular.module('eLearning').directive('tablefunction', [
                 scope.deleteData = function () {
                     $modal.open({
                         scope: scope,
-                        templateUrl: 'app/ConfirmModal.html',
+                        templateUrl: 'app/confirmModal.html',
                         controller: function ($scope, $modalInstance) {
                             $scope.ok = function () { $modalInstance.close(); }
                             $scope.cancel = function () { $modalInstance.dismiss(); };

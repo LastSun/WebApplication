@@ -4,6 +4,7 @@
 angular.module('eLearning', [
         'ui.router',
         'ui.bootstrap',
+        'ui.multiselect',
         'ngResource',
         'smart-table'
     ])
@@ -19,31 +20,37 @@ angular.module('eLearning', [
                 response: function(response) {
                     return response;
                 },
-                responseError: function(response) {
+                responseError: function (response) {
+                    alert(response.status + ': ' + response.statusText);
                     return $q.reject(response);
                 }
             }
         });
     })
     .config([
-        '$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+        '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/index.html');
 
             $stateProvider
                 .state('home', {
                     url: '/home',
-                    templateUrl: 'app/Home/home.html',
+                    templateUrl: 'app/home/home.html',
                     controller: 'HomeCtrl'
                 })
                 .state('project', {
                     url: '/project',
-                    templateUrl: 'app/Project/project.html',
+                    templateUrl: 'app/project/project.html',
                     controller: 'ProjectCtrl'
                 })
                 .state('user', {
                     url: '/user',
-                    templateUrl: 'app/User/User.html',
+                    templateUrl: 'app/user/user.html',
                     controller: 'UserCtrl'
+                })
+                .state('class', {
+                    url: '/class',
+                    templateUrl: 'app/class/class.html',
+                    controller: 'ClassCtrl'
                 })
                 .state('about', {
                     url: '/about',
@@ -51,4 +58,8 @@ angular.module('eLearning', [
                 });
         }
     ])
-;
+    .run(function($rootScope, $templateCache) {
+        $rootScope.$on('$viewContentLoaded', function() {
+//            $templateCache.removeAll();
+        });
+    });

@@ -3,7 +3,7 @@
 angular.module('eLearning').controller('ProjectCtrl', function($scope) {
         $scope.itemsPerPage = 1;
         $scope.triggerEditData = function (project) {
-            $scope.editData('app/Project/ProjectModal.html', project, { Name: '' });
+            $scope.editData('app/project/projectModal.html', project, { Name: '' });
         }
     }
 );

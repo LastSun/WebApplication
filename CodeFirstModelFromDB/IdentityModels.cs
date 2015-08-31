@@ -21,7 +21,7 @@ namespace CodeFirstModelFromDB
         public virtual DbSet<Paper> Paper { get; set; }
         public virtual DbSet<Project> Project { get; set; }
         public virtual DbSet<Quiz> Quiz { get; set; }
-        //public virtual DbSet<User> User { get; set; }
+//        public virtual DbSet<User> User { get; set; }
 
         public static AngularDbContext Create()
         {
