@@ -9,12 +9,14 @@
                 <thead>
                     <tr>
                         <th st-sort="Id">班级编号</th>
-                        <th st-sort="Name">所属项目</th>
+                        <th st-sort="Name">班级名称</th>
+                        <th st-sort="Project.Name">所属项目</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="class in displayedClass" st-select-row="class" st-select-mode="multiple">
                         <td>{{class.Id}}</td>
+                        <td>{{class.Name}}</td>
                         <td><button type="button" class="btn btn-link btn-xs" ng-click="triggerEditData(class)">{{class.Project.Name}}</button></td>
                     </tr>
                 </tbody>

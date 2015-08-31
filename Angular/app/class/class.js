@@ -7,7 +7,7 @@ angular.module('eLearning').controller('ClassCtrl', function($scope, $resource) 
         var d = $scope.sourceClass;
         $scope.itemsPerPage = 1;
         $scope.triggerEditData = function(editClass) {
-            $scope.editData('app/class/classModal.html', editClass, { Project: {}, Projects: $scope.projects });
+            $scope.editData('app/class/classModal.html', editClass, { Name: '', Projects: $scope.projects });
         }
     }
 );
