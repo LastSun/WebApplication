@@ -9,13 +9,15 @@
                 <thead>
                     <tr>
                         <th st-sort="Id">用户编号</th>
-                        <th st-sort="Name">所属项目</th>
+                        <th st-sort="UserName">用户名</th>
+                        <th st-sort="Project.Name">所属项目</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="user in displayedUser" st-select-row="user" st-select-mode="multiple">
                         <td>{{user.Id}}</td>
-                        <td><button type="button" class="btn btn-link btn-xs" ng-click="triggerEditData(user)">{{user.Project.Name}}</button></td>
+                        <td><button type="button" class="btn btn-link btn-xs" ng-click="triggerEditData(user)">{{user.UserName}}</button></td>
+                        <td>{{user.Project.Name}}</td>
                     </tr>
                 </tbody>
                 <tfoot>

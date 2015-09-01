@@ -290,7 +290,7 @@ angular.module('multiselect.tpl.html', [])
       "    <li>\n" +
       "      <input class=\"form-control input-sm\" type=\"text\" ng-model=\"searchText.label\" autofocus=\"autofocus\" placeholder=\"搜索...\" autocomplete=\"off\" />\n" +
       "    </li>\n" +
-      "    <li ng-show=\"multiple\" role=\"presentation\" class=\"\">\n" +
+      "    <li ng-show=\"multiple\" role=\"presentation\" class=\"\" style=\"text-align: center\">\n" +
       "        <button class=\"btn btn-link btn-xs\" ng-click=\"checkAll()\" type=\"button\"><i class=\"glyphicon glyphicon-ok\"></i> 全选</button>\n" +
       "        <button class=\"btn btn-link btn-xs\" ng-click=\"uncheckAll()\" type=\"button\"><i class=\"glyphicon glyphicon-remove\"></i> 清除</button>\n" +
       "    </li>\n" +

@@ -8,8 +8,8 @@ angular.module('eLearning').controller('UserCtrl', function($scope, $resource) {
             $scope.allClasses = data;
         });
         $scope.itemsPerPage = 1;
-        $scope.triggerEditData = function(user) {
-            $scope.editData('app/user/userModal.html', user, { Project: {}, Projects: $scope.projects, Class: [], AllClass: $scope.allClasses });
+        $scope.triggerEditData = function (user) {
+            $scope.editData('app/user/userModal.html', user, { ExternalData: { Projects: $scope.projects, AllClass: $scope.allClasses } });
         }
     }
 );

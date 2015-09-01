@@ -6,20 +6,20 @@
         <div class="form-group" ng-class="{ 'has-error' : userForm.userName.$invalid && !userForm.userName.$pristine, 'has-success' : userForm.userName.$valid }">
             <label class="control-label col-sm-3">用户名 <span class="glyphicon glyphicon-asterisk" style="color: crimson; font-size: x-small" aria-hidden="true"></span></label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" name="userName" ng-model="dataItem.Name" required>
+                <input type="text" class="form-control" name="userName" ng-model="dataItem.UserName" required>
                 <p class="help-block" ng-show="userForm.userName.$invalid && !userForm.userName.$pristine">请输入用户名</p>
             </div>
         </div>
         <div class="form-group" ng-class="{ 'has-success' : userForm.userProject.$valid }">
             <label class="control-label col-sm-3">所属项目 <span class="glyphicon glyphicon-asterisk" style="color: crimson; font-size: x-small" aria-hidden="true"></span></label>
             <div class="col-sm-9">
-                <select class="form-control" name="userProject" ng-model="dataItem.ProjectId" ng-options="project.Id as project.Name for project in dataItem.Projects" required></select>
+                <select class="form-control" name="userProject" ng-model="dataItem.ProjectId" ng-options="project.Id as project.Name for project in dataItem.ExternalData.Projects" required></select>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-3">所属班级</label>
             <div class="col-sm-9">
-                <div multiselect ng-model="dataItem.Class" options="p.Name for p in dataItem.AllClass" ms-header="请选择所属班级" multiple="true"></div>
+                <div multiselect ng-model="dataItem.Class" options="p.Name for p in dataItem.ExternalData.AllClass" ms-header="请选择所属班级" multiple="true"></div>
             </div>
         </div>
     </div>

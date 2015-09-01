@@ -16,8 +16,8 @@
                 <tbody>
                     <tr ng-repeat="class in displayedClass" st-select-row="class" st-select-mode="multiple">
                         <td>{{class.Id}}</td>
-                        <td>{{class.Name}}</td>
-                        <td><button type="button" class="btn btn-link btn-xs" ng-click="triggerEditData(class)">{{class.Project.Name}}</button></td>
+                        <td><button type="button" class="btn btn-link btn-xs" ng-click="triggerEditData(class)">{{class.Name}}</button></td>
+                        <td>{{class.Project.Name}}</td>
                     </tr>
                 </tbody>
                 <tfoot>

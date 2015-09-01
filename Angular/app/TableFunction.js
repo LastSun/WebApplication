@@ -21,6 +21,7 @@ angular.module('eLearning').directive('tablefunction', [
 
                 scope.editData = function (pModalPath, pDataItem, pNewDataItem) {
                     var tempDataItem = pDataItem || pNewDataItem;
+                    tempDataItem.ExternalData = pNewDataItem.ExternalData;
                     tempDataItem.IsCreate = pDataItem == undefined;
 
                     $modal.open({
