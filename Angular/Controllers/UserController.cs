@@ -39,7 +39,6 @@ namespace Angular.Controllers
             _userTable.AddOrUpdate(user);
             _db.SaveChanges();
             return user;
-
         }
 
         // PUT api/<controller>/5
