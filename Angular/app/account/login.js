@@ -1,16 +1,18 @@
 ﻿'use strict';
-app.controller('loginCtrl', ['$scope', '$location', 'authService',
-    function ($scope, $location, authService) {
+app.controller('loginCtrl', ['$scope', '$location', 'authService', 'md5',
+    function($scope, $location, authService, md5) {
         $scope.loginData = {
             userName: "",
-            password: ""
+            passwordHash: ""
         };
 
         $scope.message = "";
 
-        $scope.login = function() {
+        $scope.login = function () {
+            $scope.loginData.passwordHash = md5.createHash($scope.loginData.passwordHash);
+            $scope.loginData.password = $scope.loginData.passwordHash;
             authService.login($scope.loginData).then(
-                function (response) {
+                function(response) {
                     $location.path('/orders');
                 },
                 function(err) {

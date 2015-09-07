@@ -26,6 +26,8 @@ namespace Angular
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
                 Provider = new CustomOAuthAuthorztionServerProvider()
             };
+            app.UseOAuthAuthorizationServer(oAuthSerrverOptions);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
             WebApiConfig.Register(config);
 

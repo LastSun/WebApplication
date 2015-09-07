@@ -1,7 +1,6 @@
 ﻿'use strict';
-app.controller('signupCtrl', [
-    '$scope', '$location', '$timeout', 'authService', function($scope, $location, $timeout, authService) {
-
+app.controller('signupCtrl', ['$scope', '$location', '$timeout', 'authService','md5',
+    function ($scope, $location, $timeout, authService,md5) {
         $scope.savedSuccessfully = false;
         $scope.message = "";
 
@@ -12,7 +11,7 @@ app.controller('signupCtrl', [
         };
 
         $scope.signUp = function() {
-
+            $scope.registration.passwordHash = md5.createHash($scope.registration.password);
             authService.saveRegistration($scope.registration).then(
                 function (response) {
                     $scope.savedSuccessfully = true;

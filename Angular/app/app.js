@@ -7,7 +7,8 @@ var app = angular.module('eLearning', [
         'ui.multiselect',
         'ngResource',
         'smart-table',
-        'LocalStorageModule'
+        'LocalStorageModule',
+        'angular-md5'
     ])
     .factory('$exceptionHandler', function() {
         return function(exception, cause) {
@@ -15,8 +16,8 @@ var app = angular.module('eLearning', [
             alert(cause);
         };
     })
-    .config(function($httpProvider) {
-        $httpProvider.interceptors.push(function ($q, localStorageService) {
+    .config(function ($httpProvider) {
+        $httpProvider.interceptors.push(function ($q, $location, localStorageService) {
             return {
                 request: function(request) {
                     request.headers = request.headers || {};
@@ -80,7 +81,9 @@ var app = angular.module('eLearning', [
                 });
         }
     ])
-    .run(function($rootScope, $templateCache) {
+    .run(function ($rootScope, $templateCache, authService) {
+        authService.fillAuthData();
+
         $rootScope.$on('$viewContentLoaded', function() {
 //            $templateCache.removeAll();
         });

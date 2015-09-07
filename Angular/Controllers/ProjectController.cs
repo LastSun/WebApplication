@@ -10,6 +10,7 @@ using CodeFirstModelFromDB;
 
 namespace Angular.Controllers
 {
+    [Authorize]
     public class ProjectController : ApiController
     {
         private readonly AngularDbContext _db;
@@ -21,6 +22,7 @@ namespace Angular.Controllers
             _projectTable= _db.Project;
         }
 
+//        [Authorize]
         // GET api/<controller>
         public IEnumerable<Project> Get()
         {
