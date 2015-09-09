@@ -8,22 +8,22 @@ namespace AuthorizationServer
 {
     internal class CustomJwtFormatter : ISecureDataFormat<AuthenticationTicket>
     {
-        private readonly string _issuer = string.Empty;
+        private readonly string _issuer;
         private const string AudiencePropertyKey = "audience";
 
         public CustomJwtFormatter(string issuer)
         {
-            this._issuer = issuer;
+            _issuer = issuer;
         }
 
-        public string Protect(AuthenticationTicket data)
+        public string Protect(AuthenticationTicket ticket)
         {
-            if (data == null)
+            if (ticket == null)
             {
-                throw new ArgumentException("data");
+                throw new ArgumentException("ticket");
             }
-            var audienceId = data.Properties.Dictionary.ContainsKey(AudiencePropertyKey)
-                ? data.Properties.Dictionary[AudiencePropertyKey]
+            var audienceId = ticket.Properties.Dictionary.ContainsKey(AudiencePropertyKey)
+                ? ticket.Properties.Dictionary[AudiencePropertyKey]
                 : null;
             if (string.IsNullOrWhiteSpace(audienceId))
             {
@@ -33,9 +33,9 @@ namespace AuthorizationServer
             var symmetricKeyAsBase64 = audience.Base64Secret;
             var keyByteArray = TextEncodings.Base64Url.Decode(symmetricKeyAsBase64);
             var signingKey = new HmacSigningCredentials(keyByteArray);
-            var issued = data.Properties.IssuedUtc;
-            var expires = data.Properties.ExpiresUtc;
-            var token = new JwtSecurityToken(_issuer, audienceId, data.Identity.Claims, issued.Value.UtcDateTime, expires.Value.UtcDateTime, signingKey);
+            var issued = ticket.Properties.IssuedUtc;
+            var expires = ticket.Properties.ExpiresUtc;
+            var token = new JwtSecurityToken(_issuer, audienceId, ticket.Identity.Claims, issued?.UtcDateTime, expires?.UtcDateTime, signingKey);
             var handler = new JwtSecurityTokenHandler();
             var jwt = handler.WriteToken(token);
             return jwt;
@@ -43,7 +43,7 @@ namespace AuthorizationServer
 
         public AuthenticationTicket Unprotect(string protectedText)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

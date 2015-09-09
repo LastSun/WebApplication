@@ -151,7 +151,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Audience.cs" />
-    <Compile Include="Model\AudienceModel.cs" />
     <Compile Include="Entities\AudienceStore.cs" />
     <Compile Include="Controllers\AudienceController.cs" />
     <Compile Include="Provider\CustomJwtFormatter.cs" />

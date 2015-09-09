@@ -9,9 +9,9 @@ namespace AuthorizationServer.Controllers
 {
     public class AudienceController : ApiController
     {
-        public IHttpActionResult Post(AudienceModel audience)
+        public IHttpActionResult Post()
         {
-            var newAudience = AudienceStore.AddAudience(audience.Name);
+            var newAudience = AudienceStore.AddAudience();
             return Ok(newAudience);
         }
     }
