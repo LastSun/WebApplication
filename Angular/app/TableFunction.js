@@ -4,10 +4,11 @@ angular.module('eLearning').directive('tablefunction', [
     '$modal','$resource',
     function ($modal, $resource) {
         return {
-            scope: { resourceUrl: '=', triggerEditData: '=', editData: '=', source: '=', displayedSource: '=', itemsPerPage: '=' },
+            scope: { resourceApi: '=', triggerEditData: '=', editData: '=', source: '=', displayedSource: '=', itemsPerPage: '=' },
             templateUrl: 'app/tableFunction.html',
             link: function (scope, element, attrs, ctrls) {
-                scope.resource = $resource(scope.resourceUrl);
+                scope.resourceBaseUrl = 'http://localhost:55893/';
+                scope.resource = $resource(scope.resourceBaseUrl + scope.resourceApi);
                 scope.resource.query(function (data) {
                     scope.source = data;
                     scope.displayedSource = [].concat(scope.source);

@@ -1,7 +1,7 @@
 ﻿'use strict';
 
-app.factory('authService', ['$http', '$q', '$base64', 'localStorageService','uuid2',
-    function($http, $q, $base64, localStorageService,uuid2) {
+app.factory('authService', ['$http', '$q', 'localStorageService',
+    function ($http, $q, localStorageService) {
         var serviceBase = 'http://localhost:48752/';
         var authServiceFactory = {};
         var _authentication = {
@@ -16,7 +16,8 @@ app.factory('authService', ['$http', '$q', '$base64', 'localStorageService','uui
             });
         }
 
-        var _login= function(loginData) {
+        var _login = function (loginData) {
+            _logout();
             var data = "grant_type=password"
                 + "&username=" + loginData.userName
                 + "&password=" + loginData.password;
@@ -24,7 +25,7 @@ app.factory('authService', ['$http', '$q', '$base64', 'localStorageService','uui
             $http.post(serviceBase + 'oauth2/token', data, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    'Authorization': 'Basic ' + $base64.encode(uuid2.newguid() + ':Heyker')
+                    'Authorization': 'Basic RUJGRkE5NkUtRDczNy00RkNGLUIxMTUtQUY0NTIxNzlENjJGOkhleWtlcg=='
                 }
             }).success(function(response) {
                 localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName });
@@ -45,7 +46,7 @@ app.factory('authService', ['$http', '$q', '$base64', 'localStorageService','uui
         }
 
         var _fillAuthData= function() {
-            var authData = localStorageService.get('authoriztionData');
+            var authData = localStorageService.get('authorizationData');
             if (authData) {
                 _authentication.isAuth = true;
                 _authentication.userName = authData.userName;

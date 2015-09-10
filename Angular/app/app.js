@@ -8,9 +8,7 @@ var app = angular.module('eLearning', [
         'ngResource',
         'smart-table',
         'LocalStorageModule',
-        'angular-md5',
-        'base64',
-        'angularUUID2'
+        'angular-md5'
     ])
     .factory('$exceptionHandler', function() {
         return function(exception, cause) {

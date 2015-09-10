@@ -18,27 +18,17 @@ namespace AuthorizationServer
 
         public string Protect(AuthenticationTicket ticket)
         {
-            if (ticket == null)
-            {
-                throw new ArgumentException("ticket");
-            }
+            if (ticket == null) throw new ArgumentException("ticket");
             var audienceId = ticket.Properties.Dictionary.ContainsKey(AudiencePropertyKey)
                 ? ticket.Properties.Dictionary[AudiencePropertyKey]
                 : null;
             if (string.IsNullOrWhiteSpace(audienceId))
-            {
                 throw new InvalidOperationException("AuthenticationTicket.Properties does not include audience");
-            }
             var audience = AudienceStore.FindAudience(audienceId);
-            var symmetricKeyAsBase64 = audience.Base64Secret;
-            var keyByteArray = TextEncodings.Base64Url.Decode(symmetricKeyAsBase64);
+            var keyByteArray = TextEncodings.Base64Url.Decode(audience.Base64Secret);
             var signingKey = new HmacSigningCredentials(keyByteArray);
-            var issued = ticket.Properties.IssuedUtc;
-            var expires = ticket.Properties.ExpiresUtc;
-            var token = new JwtSecurityToken(_issuer, audienceId, ticket.Identity.Claims, issued?.UtcDateTime, expires?.UtcDateTime, signingKey);
-            var handler = new JwtSecurityTokenHandler();
-            var jwt = handler.WriteToken(token);
-            return jwt;
+            var token = new JwtSecurityToken(_issuer, audienceId, ticket.Identity.Claims, ticket.Properties.IssuedUtc?.UtcDateTime, ticket.Properties.ExpiresUtc?.UtcDateTime, signingKey);
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
         public AuthenticationTicket Unprotect(string protectedText)

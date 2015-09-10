@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using CodeFirstModelFromDB;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 
@@ -23,24 +26,27 @@ namespace AuthorizationServer
                 context.SetError("invalid_clientId", "clientId is not set");
                 return Task.FromResult<object>(null);
             }
-            Guid clientGuid;
-            if (!Guid.TryParse(clientId, out clientGuid) && clientSecret != "Heyker")
+            var audience = AudienceStore.FindAudience(clientId);
+            if (audience == null || clientSecret != audience.Secret)
             {
                 context.SetError("invalid_clientId", $"Invalid Client ID {clientId}");
                 return Task.FromResult<object>(null);
             }
-            AudienceStore.AddAudience(clientId, clientSecret);
             context.Validated();
             return Task.FromResult<object>(null);
         }
 
-        public override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
+        public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] {"*"});
-            if (context.UserName != context.Password)
+            using (var userManager = new UserManager<User>(new UserStore<User>(new AngularDbContext())))
             {
-                context.SetError("invaild_grant", "The user name or password is incorrect");
-                return Task.FromResult<object>(null);
+                var user = await userManager.FindAsync(context.UserName, context.Password);
+                if (user == null)
+                {
+                    context.SetError("invaild_grant", "The user name or password is incorrect");
+                    return;
+                }
             }
             var identity = new ClaimsIdentity("JWT");
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
@@ -54,7 +60,6 @@ namespace AuthorizationServer
             });
             var ticket = new AuthenticationTicket(identity, properties);
             context.Validated(ticket);
-            return Task.FromResult<object>(null);
         }
     }
 }

@@ -183,8 +183,6 @@
     <Content Include="scripts\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="scripts\angular-ui\ui-bootstrap.js" />
     <Content Include="scripts\angular-ui\ui-bootstrap.min.js" />
-    <Content Include="scripts\angular-uuid2.js" />
-    <Content Include="scripts\angular-uuid2.min.js" />
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular.min.js" />
     <Content Include="app\app.js" />

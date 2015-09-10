@@ -7,9 +7,17 @@ namespace AuthorizationServer
 {
     public class AudienceStore
     {
-        public static string Secret4Default = "IxrAjDoa2FqElO7IhrSrUJELhUckePEPVpaePlS_Xaw";
-        public static string Secret4Web = "IxrAjDoa2FqElO7IhrSrUJELhUckePEPVpaePlS_Xaw";
         public static ConcurrentDictionary<string, Audience> Audiences = new ConcurrentDictionary<string, Audience>();
+
+        static AudienceStore()
+        {
+            Audiences.TryAdd("EBFFA96E-D737-4FCF-B115-AF452179D62F", new Audience
+            {
+                Id = "EBFFA96E-D737-4FCF-B115-AF452179D62F",
+                Secret = "Heyker",
+                Base64Secret = "IxrAjDoa2FqElO7IhrSrUJELhUckePEPVpaePlS_Xaw"
+            });
+        }
 
         public static Audience FindAudience(string clientId)
         {
@@ -20,29 +28,15 @@ namespace AuthorizationServer
 
         public static Audience AddAudience()
         {
-            return AddAudience(Guid.NewGuid().ToString());
-        }
+            var clientId = Guid.NewGuid().ToString().ToUpper();
 
-        public static Audience AddAudience(string clientId, string clientSecret="")
-        {
-            string base64Secret;
-            switch (clientSecret)
-            {
-                case "Heyker":
-                    base64Secret = Secret4Web;
-                    break;
-                default:
-                    base64Secret = Secret4Default;
-                    break;
-            }
-            var audience = new Audience
-            {
-                Id = clientId,
-                Secret = clientSecret,
-                Base64Secret = base64Secret
-            };
-            Audiences.TryAdd(clientId, audience);
-            return audience;
+            var key = new byte[32];
+            RandomNumberGenerator.Create().GetBytes(key);
+            var base64Secret = TextEncodings.Base64Url.Encode(key);
+
+            var newAudience = new Audience {Id = clientId, Secret = "Heyker", Base64Secret = base64Secret};
+            Audiences.TryAdd(clientId, newAudience);
+            return newAudience;
         }
     }
 }

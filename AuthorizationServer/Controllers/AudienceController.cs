@@ -7,8 +7,10 @@ using System.Web.Http;
 
 namespace AuthorizationServer.Controllers
 {
+    [RoutePrefix("api/audience")]
     public class AudienceController : ApiController
     {
+        [Route("")]
         public IHttpActionResult Post()
         {
             var newAudience = AudienceStore.AddAudience();
