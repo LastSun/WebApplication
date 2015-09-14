@@ -15,9 +15,9 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="user in displayedUser" st-select-row="user" st-select-mode="multiple">
-                        <td>{{user.Id}}</td>
-                        <td><button type="button" class="btn btn-link btn-xs" ng-click="triggerEditData(user)">{{user.UserName}}</button></td>
-                        <td>{{user.Project.Name}}</td>
+                        <td>{{user.id}}</td>
+                        <td><button type="button" class="btn btn-link btn-xs" ng-click="triggerEditData(user)">{{user.userName}}</button></td>
+                        <td>{{user.project.name}}</td>
                     </tr>
                 </tbody>
                 <tfoot>
