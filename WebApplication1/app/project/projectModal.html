@@ -1,0 +1,19 @@
+﻿<form name="projectForm" class="form-horizontal" ng-submit="submitForm()" novalidate>
+    <div class="modal-header">
+        <h3 class="modal-title">新建项目</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-group has-feedback" ng-class="{ 'has-error' : projectForm.projectName.$invalid && !projectForm.projectName.$pristine }">
+            <label class="control-label col-sm-3">项目名称</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="projectName" ng-model="dataItem.name" required>
+                <span class="glyphicon glyphicon-asterisk form-control-feedback" style="color: crimson; font-size: 10px" aria-hidden="true"></span>
+                <p class="help-block" ng-show="projectForm.projectName.$invalid && !projectForm.projectName.$pristine">请输入项目名称</p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" ng-click="cancel()">取消</button>
+        <button class="btn btn-primary" type="submit" ng-disabled="projectForm.$invalid">确认新建</button>
+    </div>
+</form>

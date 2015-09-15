@@ -1,0 +1,30 @@
+﻿<form name="userForm" class="form-horizontal" ng-submit="submitForm()" novalidate>
+    <div class="modal-header">
+        <h3 class="modal-title">新建用户</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-group" ng-class="{ 'has-error' : userForm.userName.$invalid && !userForm.userName.$pristine, 'has-success' : userForm.userName.$valid }">
+            <label class="control-label col-sm-3">用户名 <span class="glyphicon glyphicon-asterisk" style="color: crimson; font-size: x-small" aria-hidden="true"></span></label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="userName" ng-model="dataItem.userName" required>
+                <p class="help-block" ng-show="userForm.userName.$invalid && !userForm.userName.$pristine">请输入用户名</p>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-success' : userForm.userProject.$valid }">
+            <label class="control-label col-sm-3">所属项目 <span class="glyphicon glyphicon-asterisk" style="color: crimson; font-size: x-small" aria-hidden="true"></span></label>
+            <div class="col-sm-9">
+                <select class="form-control" name="userProject" ng-model="dataItem.projectId" ng-options="project.id as project.name for project in dataItem.externalData.projects" required></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">所属班级</label>
+            <div class="col-sm-9">
+                <div multiselect ng-model="dataItem.Class" options="p.Name for p in dataItem.externalData.allClass" ms-header="请选择所属班级" multiple="true"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" ng-click="cancel()">取消</button>
+        <button class="btn btn-primary" type="submit" ng-disabled="userForm.$invalid">确认新建</button>
+    </div>
+</form>
