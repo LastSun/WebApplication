@@ -88,7 +88,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\smart-table.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Index.html" />
+    <Content Include="index.html" />
     <Content Include="index.js" />
     <Content Include="scripts\angular-animate.js" />
     <Content Include="scripts\angular-animate.min.js" />
