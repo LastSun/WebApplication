@@ -10,7 +10,7 @@ namespace CodeFirstModelFromDB
     {
         static void Main(string[] args)
         {
-            using (var db = new AngularDbContext())
+            using (var db = new ElearningDbContext())
             {
                 db.Database.Initialize(true);
             }

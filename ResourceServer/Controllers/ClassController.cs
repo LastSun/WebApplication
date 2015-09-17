@@ -9,13 +9,13 @@ namespace ResourceServer.Controllers
 {
     public class ClassController : ApiController
     {
-        private readonly AngularDbContext _db;
+        private readonly ElearningDbContext _db;
         private readonly DbSet<Class> _classTable;
 
 
         public ClassController()
         {
-            _db = new AngularDbContext();
+            _db = new ElearningDbContext();
             _classTable = _db.Class;
         }
 

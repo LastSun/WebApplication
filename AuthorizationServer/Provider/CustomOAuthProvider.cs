@@ -39,14 +39,22 @@ namespace AuthorizationServer
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] {"*"});
-            using (var userManager = new UserManager<User>(new UserStore<User>(new AngularDbContext())))
+            try
             {
-                var user = await userManager.FindAsync(context.UserName, context.Password);
-                if (user == null)
+                using (var userManager = new UserManager<User>(new UserStore<User>(new ElearningDbContext())))
                 {
-                    context.SetError("invaild_grant", "The user name or password is incorrect");
-                    return;
+                    var user = await userManager.FindAsync(context.UserName, context.Password);
+                    if (user == null)
+                    {
+                        context.SetError("invaild_grant", "The user name or password is incorrect");
+                        return;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                var a = ex;
+                throw;
             }
             var identity = new ClaimsIdentity("JWT");
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));

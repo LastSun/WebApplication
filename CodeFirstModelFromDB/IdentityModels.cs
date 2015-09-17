@@ -7,11 +7,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CodeFirstModelFromDB
 {
-    public partial class AngularDbContext : IdentityDbContext<User>
+    public partial class ElearningDbContext : IdentityDbContext<User>
     {
-        public AngularDbContext() : base("name=ELearningContainer")
-        {
-        }
+        public ElearningDbContext() : base("name=ElearningDbContext") { }
 
         public virtual DbSet<Action_UserCourse> Action_UserCourse { get; set; }
         public virtual DbSet<Action_UserQuiz> Action_UserQuiz { get; set; }
@@ -21,12 +19,6 @@ namespace CodeFirstModelFromDB
         public virtual DbSet<Paper> Paper { get; set; }
         public virtual DbSet<Project> Project { get; set; }
         public virtual DbSet<Quiz> Quiz { get; set; }
-//        public virtual DbSet<User> User { get; set; }
-
-        public static AngularDbContext Create()
-        {
-            return new AngularDbContext();
-        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -72,7 +64,6 @@ namespace CodeFirstModelFromDB
                 .HasMany(e => e.Action_UserQuiz)
                 .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
-
         }
     }
 

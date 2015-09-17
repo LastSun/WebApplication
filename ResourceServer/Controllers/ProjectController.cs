@@ -10,12 +10,12 @@ namespace ResourceServer.Controllers
     [Authorize]
     public class ProjectController : ApiController
     {
-        private readonly AngularDbContext _db;
+        private readonly ElearningDbContext _db;
         private readonly DbSet<Project> _projectTable;
 
         public ProjectController()
         {
-            _db = new AngularDbContext();
+            _db = new ElearningDbContext();
             _projectTable= _db.Project;
         }
 

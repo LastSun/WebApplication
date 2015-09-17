@@ -12,6 +12,21 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -62,31 +77,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Angular\Action_UserCourse.cs" />
-    <Compile Include="Angular\Action_UserQuiz.cs" />
-    <Compile Include="Angular\Class.cs" />
-    <Compile Include="Angular\Course.cs" />
-    <Compile Include="Angular\Courseware.cs" />
+    <Compile Include="Elearning\Action_UserCourse.cs" />
+    <Compile Include="Elearning\Action_UserQuiz.cs" />
+    <Compile Include="Elearning\Class.cs" />
+    <Compile Include="Elearning\Course.cs" />
+    <Compile Include="Elearning\Courseware.cs" />
+    <Compile Include="Elearning\Paper.cs" />
+    <Compile Include="Elearning\Project.cs" />
+    <Compile Include="Elearning\Quiz.cs" />
+    <Compile Include="Elearning\User.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Angular\Paper.cs" />
-    <Compile Include="Migrations\201508270943522_Init.cs" />
-    <Compile Include="Migrations\201508270943522_Init.Designer.cs">
-      <DependentUpon>201508270943522_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201509171008278_Init.cs" />
+    <Compile Include="Migrations\201509171008278_Init.Designer.cs">
+      <DependentUpon>201509171008278_Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508270949177_AddProjectName.cs" />
-    <Compile Include="Migrations\201508270949177_AddProjectName.Designer.cs">
-      <DependentUpon>201508270949177_AddProjectName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509010334565_AddClassName.cs" />
-    <Compile Include="Migrations\201509010334565_AddClassName.Designer.cs">
-      <DependentUpon>201509010334565_AddClassName.cs</DependentUpon>
+    <Compile Include="Migrations\201509171011302_AddProjectName.cs" />
+    <Compile Include="Migrations\201509171011302_AddProjectName.Designer.cs">
+      <DependentUpon>201509171011302_AddProjectName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Angular\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Angular\Quiz.cs" />
-    <Compile Include="Angular\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -95,15 +106,33 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508270943522_Init.resx">
-      <DependentUpon>201508270943522_Init.cs</DependentUpon>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201509171008278_Init.resx">
+      <DependentUpon>201509171008278_Init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508270949177_AddProjectName.resx">
-      <DependentUpon>201508270949177_AddProjectName.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509171011302_AddProjectName.resx">
+      <DependentUpon>201509171011302_AddProjectName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509010334565_AddClassName.resx">
-      <DependentUpon>201509010334565_AddClassName.cs</DependentUpon>
-    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Database1.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Database1_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>Database1.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

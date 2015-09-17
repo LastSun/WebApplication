@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/27/2015 17:26:44
+-- Date Created: 09/17/2015 14:55:10
 -- Generated from EDMX file: C:\Users\lasts\Documents\Visual Studio 2015\Projects\WebApplication\Model\ELearning.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [Angular];
+USE [Elearning];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO

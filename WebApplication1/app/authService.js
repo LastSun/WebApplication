@@ -11,7 +11,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService',
 
         var _saveRegistration= function(registration) {
             _logout();
-            return $http.post(serviceBase + 'api/account/register', registration).then(function(response) {
+            return $http.post(serviceBase + 'api/account', registration).then(function(response) {
                 return response;
             });
         }

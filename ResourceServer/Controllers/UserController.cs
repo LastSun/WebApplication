@@ -9,12 +9,12 @@ namespace ResourceServer.Controllers
 {
     public class UserController : ApiController
     {
-        private readonly AngularDbContext _db;
+        private readonly ElearningDbContext _db;
         private readonly IDbSet<User> _userTable;
 
         public UserController()
         {
-            _db=new AngularDbContext();
+            _db=new ElearningDbContext();
             _userTable = _db.Users;
         }
 

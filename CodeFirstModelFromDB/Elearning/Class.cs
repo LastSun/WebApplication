@@ -6,28 +6,26 @@ namespace CodeFirstModelFromDB
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("User")]
-    public partial class User
+    [Table("Class")]
+    public partial class Class
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Class()
         {
-            Action_UserCourse = new HashSet<Action_UserCourse>();
-            Action_UserQuiz = new HashSet<Action_UserQuiz>();
-            Class = new HashSet<Class>();
+            Course = new HashSet<Course>();
+            User = new HashSet<User>();
         }
 
+        public int Id { get; set; }
+
         public int ProjectId { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Action_UserCourse> Action_UserCourse { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Action_UserQuiz> Action_UserQuiz { get; set; }
 
         public virtual Project Project { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Class> Class { get; set; }
+        public virtual ICollection<Course> Course { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> User { get; set; }
     }
 }

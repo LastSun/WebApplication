@@ -1,11 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Web.Http;
 using CodeFirstModelFromDB;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace ResourceServer.Controllers
+namespace AuthorizationServer.Controllers
 {
+    [RoutePrefix("api/account")]
     public class AccountController : ApiController
     {
         private readonly ElearningDbContext _db;
@@ -19,7 +21,8 @@ namespace ResourceServer.Controllers
             _userManager = new UserManager<User>(_userStore);
         }
 
-        public async Task<IHttpActionResult> RegisterUser(User user)
+        [Route("")]
+        public async Task<IHttpActionResult> Post(User user)
         {
             var identityResult = await _userManager.CreateAsync(user, user.PasswordHash);
             return Ok();

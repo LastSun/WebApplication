@@ -166,6 +166,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Entities\Audience.cs" />
     <Compile Include="Entities\AudienceStore.cs" />
     <Compile Include="Controllers\AudienceController.cs" />
