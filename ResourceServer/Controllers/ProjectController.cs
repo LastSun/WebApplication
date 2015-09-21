@@ -7,7 +7,6 @@ using CodeFirstModelFromDB;
 
 namespace ResourceServer.Controllers
 {
-    [Authorize]
     public class ProjectController : ApiController
     {
         private readonly ElearningDbContext _db;
