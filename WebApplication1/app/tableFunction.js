@@ -7,7 +7,7 @@ angular.module('eLearning').directive('tablefunction', [
             scope: { resourceApi: '=', triggerEditData: '=', editData: '=', source: '=', displayedSource: '=', itemsPerPage: '=' },
             templateUrl: 'app/tableFunction.html',
             link: function (scope, element, attrs, ctrls) {
-                scope.resourceBaseUrl = 'http://localhost:55893/';
+                scope.resourceBaseUrl = 'http://localhost:35356/';
                 scope.resource = $resource(scope.resourceBaseUrl + scope.resourceApi);
                 scope.resource.query(function (data) {
                     scope.source = data;
