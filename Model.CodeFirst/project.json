@@ -5,10 +5,8 @@
   "dependencies": {
     "EntityFramework.SqlServer": "7.0.0-beta7",
     "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-beta7",
-    "Microsoft.AspNet.Mvc": "6.0.0-beta7",
     "Microsoft.AspNet.Server.IIS": "1.0.0-beta7",
-    "Microsoft.AspNet.Server.WebListener": "1.0.0-beta7",
-    "Microsoft.AspNet.StaticFiles": "1.0.0-beta7"
+    "Microsoft.AspNet.Server.WebListener": "1.0.0-beta7"
   },
 
   "commands": {
@@ -16,23 +14,20 @@
   },
 
   "frameworks": {
-    "dnx451": {
-      "dependencies": {
-        "CodeFirstModel": "1.0.0-*"
-      }
-    }
+    "dnx451": { },
+    "dnxcore50": { }
   },
 
-  "exclude": [
-    "wwwroot",
-    "node_modules",
-    "bower_components"
-  ],
   "publishExclude": [
     "node_modules",
     "bower_components",
     "**.xproj",
     "**.user",
     "**.vspscc"
+  ],
+  "exclude": [
+    "wwwroot",
+    "node_modules",
+    "bower_components"
   ]
 }
