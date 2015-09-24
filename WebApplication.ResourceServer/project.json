@@ -3,12 +3,11 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "EntityFramework.SqlServer": "7.0.0-beta7",
-    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-beta7",
     "Microsoft.AspNet.Mvc": "6.0.0-beta7",
     "Microsoft.AspNet.Server.IIS": "1.0.0-beta7",
     "Microsoft.AspNet.Server.WebListener": "1.0.0-beta7",
-    "Microsoft.AspNet.StaticFiles": "1.0.0-beta7"
+    "Microsoft.AspNet.StaticFiles": "1.0.0-beta7",
+    "Microsoft.AspNet.Authentication.OAuthBearer": "1.0.0-beta7"
   },
 
   "commands": {
@@ -18,7 +17,7 @@
   "frameworks": {
     "dnx451": {
       "dependencies": {
-        "CodeFirstModel": "1.0.0-*"
+        "ConsoleApplication1": "1.0.0-*"
       }
     }
   },

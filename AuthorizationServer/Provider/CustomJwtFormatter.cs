@@ -27,7 +27,13 @@ namespace AuthorizationServer
             var audience = AudienceStore.FindAudience(audienceId);
             var keyByteArray = TextEncodings.Base64Url.Decode(audience.Base64Secret);
             var signingKey = new HmacSigningCredentials(keyByteArray);
-            var token = new JwtSecurityToken(_issuer, audienceId, ticket.Identity.Claims, ticket.Properties.IssuedUtc?.UtcDateTime, ticket.Properties.ExpiresUtc?.UtcDateTime, signingKey);
+            var token = new JwtSecurityToken(
+                issuer: _issuer,
+                audience: audienceId,
+                claims: ticket.Identity.Claims,
+                notBefore: ticket.Properties.IssuedUtc?.UtcDateTime,
+                expires: ticket.Properties.ExpiresUtc?.UtcDateTime,
+                signingCredentials: signingKey);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 

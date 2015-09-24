@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNet.Mvc;
-using CodeFirstModel;
-using System.Linq;
-using System.Data.Entity.Migrations;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Linq;
+using ConsoleApplication1;
+using Microsoft.AspNet.Mvc;
 
 namespace WebApplication.ResourceServer.Controllers
 {
@@ -11,7 +11,7 @@ namespace WebApplication.ResourceServer.Controllers
     public class ClassController : Controller
     {
         private readonly ElearningDbContext _db;
-        private readonly IDbSet<Class> _classTable;
+        private readonly DbSet<Class> _classTable;
 
 
         public ClassController()
@@ -20,12 +20,14 @@ namespace WebApplication.ResourceServer.Controllers
             _classTable = _db.Class;
         }
 
+        [HttpGet]
         // GET api/<controller>
         public IEnumerable<Class> Get()
         {
             return _classTable.AsQueryable();
         }
 
+        [HttpGet("{id}")]
         // GET api/<controller>/5
         public Class Get(int id)
         {

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
-using CodeFirstModel;
-using Microsoft.AspNet.Mvc;
 using System.Linq;
+using ConsoleApplication1;
+using Microsoft.AspNet.Mvc;
 
 namespace WebApplication.ResourceServer.Controllers
 {

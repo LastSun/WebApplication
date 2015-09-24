@@ -1,4 +1,4 @@
-namespace CodeFirstModel.Migrations
+namespace ConsoleApplication1.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -7,52 +7,6 @@ namespace CodeFirstModel.Migrations
     {
         public override void Up()
         {
-            CreateTable(
-                "dbo.Role",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(nullable: false, maxLength: 256),
-                    })
-                .PrimaryKey(t => t.Id)
-                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
-            
-            CreateTable(
-                "dbo.User_Role",
-                c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.Role", t => t.RoleId, cascadeDelete: true)
-                .ForeignKey("dbo.User", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId)
-                .Index(t => t.RoleId);
-            
-            CreateTable(
-                "dbo.User",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        ProjectId = c.Int(nullable: false),
-                        Email = c.String(maxLength: 256),
-                        EmailConfirmed = c.Boolean(nullable: false),
-                        PasswordHash = c.String(),
-                        SecurityStamp = c.String(),
-                        PhoneNumber = c.String(),
-                        PhoneNumberConfirmed = c.Boolean(nullable: false),
-                        TwoFactorEnabled = c.Boolean(nullable: false),
-                        LockoutEndDateUtc = c.DateTime(),
-                        LockoutEnabled = c.Boolean(nullable: false),
-                        AccessFailedCount = c.Int(nullable: false),
-                        UserName = c.String(nullable: false, maxLength: 256),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Project", t => t.ProjectId, cascadeDelete: true)
-                .Index(t => t.ProjectId)
-                .Index(t => t.UserName, unique: true, name: "UserNameIndex");
-            
             CreateTable(
                 "dbo.Action_UserCourse",
                 c => new
@@ -124,26 +78,33 @@ namespace CodeFirstModel.Migrations
                         QuizId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Quiz", t => t.QuizId)
                 .ForeignKey("dbo.User", t => t.UserId)
+                .ForeignKey("dbo.Quiz", t => t.QuizId)
                 .Index(t => t.UserId)
                 .Index(t => t.QuizId);
             
             CreateTable(
-                "dbo.Paper",
+                "dbo.User",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.String(nullable: false, maxLength: 128),
+                        ProjectId = c.Int(nullable: false),
+                        Email = c.String(maxLength: 256),
+                        EmailConfirmed = c.Boolean(nullable: false),
+                        PasswordHash = c.String(),
+                        SecurityStamp = c.String(),
+                        PhoneNumber = c.String(),
+                        PhoneNumberConfirmed = c.Boolean(nullable: false),
+                        TwoFactorEnabled = c.Boolean(nullable: false),
+                        LockoutEndDateUtc = c.DateTime(),
+                        LockoutEnabled = c.Boolean(nullable: false),
+                        AccessFailedCount = c.Int(nullable: false),
+                        UserName = c.String(nullable: false, maxLength: 256),
                     })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Courseware",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                    })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Project", t => t.ProjectId, cascadeDelete: true)
+                .Index(t => t.ProjectId)
+                .Index(t => t.UserName, unique: true, name: "UserNameIndex");
             
             CreateTable(
                 "dbo.Claim",
@@ -169,6 +130,45 @@ namespace CodeFirstModel.Migrations
                 .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
                 .ForeignKey("dbo.User", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.User_Role",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.User", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.Role", t => t.RoleId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.Paper",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Courseware",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Role",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(nullable: false, maxLength: 256),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
             CreateTable(
                 "dbo.Class_Course",
@@ -213,34 +213,39 @@ namespace CodeFirstModel.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.User_Role", "UserId", "dbo.User");
-            DropForeignKey("dbo.Login", "UserId", "dbo.User");
-            DropForeignKey("dbo.Claim", "UserId", "dbo.User");
-            DropForeignKey("dbo.Action_UserQuiz", "UserId", "dbo.User");
-            DropForeignKey("dbo.Action_UserCourse", "UserId", "dbo.User");
+            DropForeignKey("dbo.User_Role", "RoleId", "dbo.Role");
             DropForeignKey("dbo.Project_Course", "Project_Id", "dbo.Project");
             DropForeignKey("dbo.Project_Course", "Course_Id", "dbo.Course");
             DropForeignKey("dbo.Course", "CoursewareId", "dbo.Courseware");
             DropForeignKey("dbo.User_Class", "User_Id", "dbo.User");
             DropForeignKey("dbo.User_Class", "Class_Id", "dbo.Class");
-            DropForeignKey("dbo.User", "ProjectId", "dbo.Project");
             DropForeignKey("dbo.Quiz", "ProjectId", "dbo.Project");
             DropForeignKey("dbo.Quiz", "PaperId", "dbo.Paper");
             DropForeignKey("dbo.Quiz", "CourseId", "dbo.Course");
             DropForeignKey("dbo.Action_UserQuiz", "QuizId", "dbo.Quiz");
+            DropForeignKey("dbo.User_Role", "UserId", "dbo.User");
+            DropForeignKey("dbo.User", "ProjectId", "dbo.Project");
+            DropForeignKey("dbo.Login", "UserId", "dbo.User");
+            DropForeignKey("dbo.Claim", "UserId", "dbo.User");
+            DropForeignKey("dbo.Action_UserQuiz", "UserId", "dbo.User");
+            DropForeignKey("dbo.Action_UserCourse", "UserId", "dbo.User");
             DropForeignKey("dbo.Class", "ProjectId", "dbo.Project");
             DropForeignKey("dbo.Class_Course", "Course_Id", "dbo.Course");
             DropForeignKey("dbo.Class_Course", "Class_Id", "dbo.Class");
             DropForeignKey("dbo.Action_UserCourse", "CourseId", "dbo.Course");
-            DropForeignKey("dbo.User_Role", "RoleId", "dbo.Role");
             DropIndex("dbo.Project_Course", new[] { "Project_Id" });
             DropIndex("dbo.Project_Course", new[] { "Course_Id" });
             DropIndex("dbo.User_Class", new[] { "User_Id" });
             DropIndex("dbo.User_Class", new[] { "Class_Id" });
             DropIndex("dbo.Class_Course", new[] { "Course_Id" });
             DropIndex("dbo.Class_Course", new[] { "Class_Id" });
+            DropIndex("dbo.Role", "RoleNameIndex");
+            DropIndex("dbo.User_Role", new[] { "RoleId" });
+            DropIndex("dbo.User_Role", new[] { "UserId" });
             DropIndex("dbo.Login", new[] { "UserId" });
             DropIndex("dbo.Claim", new[] { "UserId" });
+            DropIndex("dbo.User", "UserNameIndex");
+            DropIndex("dbo.User", new[] { "ProjectId" });
             DropIndex("dbo.Action_UserQuiz", new[] { "QuizId" });
             DropIndex("dbo.Action_UserQuiz", new[] { "UserId" });
             DropIndex("dbo.Quiz", new[] { "PaperId" });
@@ -250,27 +255,22 @@ namespace CodeFirstModel.Migrations
             DropIndex("dbo.Course", new[] { "CoursewareId" });
             DropIndex("dbo.Action_UserCourse", new[] { "CourseId" });
             DropIndex("dbo.Action_UserCourse", new[] { "UserId" });
-            DropIndex("dbo.User", "UserNameIndex");
-            DropIndex("dbo.User", new[] { "ProjectId" });
-            DropIndex("dbo.User_Role", new[] { "RoleId" });
-            DropIndex("dbo.User_Role", new[] { "UserId" });
-            DropIndex("dbo.Role", "RoleNameIndex");
             DropTable("dbo.Project_Course");
             DropTable("dbo.User_Class");
             DropTable("dbo.Class_Course");
-            DropTable("dbo.Login");
-            DropTable("dbo.Claim");
+            DropTable("dbo.Role");
             DropTable("dbo.Courseware");
             DropTable("dbo.Paper");
+            DropTable("dbo.User_Role");
+            DropTable("dbo.Login");
+            DropTable("dbo.Claim");
+            DropTable("dbo.User");
             DropTable("dbo.Action_UserQuiz");
             DropTable("dbo.Quiz");
             DropTable("dbo.Project");
             DropTable("dbo.Class");
             DropTable("dbo.Course");
             DropTable("dbo.Action_UserCourse");
-            DropTable("dbo.User");
-            DropTable("dbo.User_Role");
-            DropTable("dbo.Role");
         }
     }
 }

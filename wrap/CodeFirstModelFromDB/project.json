@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net451": {
+      "wrappedProject": "../../CodeFirstModelFromDB/CodeFirstModelFromDB.csproj",
+      "bin": {
+        "assembly": "../../CodeFirstModelFromDB/obj/{configuration}/CodeFirstModelFromDB.exe",
+        "pdb": "../../CodeFirstModelFromDB/obj/{configuration}/CodeFirstModelFromDB.pdb"
+      },
+      "dependencies": {
+        "EntityFramework": "6.1.3",
+        "EntityFramework.zh-Hans": "6.1.3",
+        "Microsoft.AspNet.Identity.Core": "2.2.1",
+        "Microsoft.AspNet.Identity.EntityFramework": "2.2.1",
+        "Microsoft.AspNet.Identity.EntityFramework.zh-Hans": "2.2.1"
+      }
+    }
+  }
+}

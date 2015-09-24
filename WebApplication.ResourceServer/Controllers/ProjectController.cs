@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
-using CodeFirstModel;
-using Microsoft.AspNet.Mvc;
 using System.Linq;
+using ConsoleApplication1;
+using Microsoft.AspNet.Mvc;
 
 namespace WebApplication.ResourceServer.Controllers
 {
@@ -11,15 +11,14 @@ namespace WebApplication.ResourceServer.Controllers
     public class ProjectController : Controller
     {
         private readonly ElearningDbContext _db;
-        private readonly IDbSet<Project> _projectTable;
+        private readonly DbSet<Project> _projectTable;
 
         public ProjectController()
         {
             _db = new ElearningDbContext();
-            _projectTable = _db.Project;
+            _projectTable= _db.Project;
         }
 
-//        [Authorize]
         // GET api/<controller>
         [HttpGet]
         public IEnumerable<Project> Get()
@@ -27,12 +26,14 @@ namespace WebApplication.ResourceServer.Controllers
             return _projectTable.AsQueryable();
         }
 
+        [HttpGet("{id}")]
         // GET api/<controller>/5
         public Project Get(int id)
         {
             return _projectTable.Find(id);
         }
 
+        [HttpPost]
         // POST api/<controller>
         public Project Post(Project newProject)
         {
@@ -41,6 +42,7 @@ namespace WebApplication.ResourceServer.Controllers
             return newProject;
         }
 
+        [HttpPut("{id}")]
         // PUT api/<controller>/5
         public void Put(int id, Project project)
         {
@@ -48,6 +50,7 @@ namespace WebApplication.ResourceServer.Controllers
             _db.SaveChanges();
         }
 
+        [HttpDelete("{id}")]
         // DELETE api/<controller>/5
         public void Delete(int id)
         {

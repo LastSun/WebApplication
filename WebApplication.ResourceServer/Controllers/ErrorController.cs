@@ -9,7 +9,7 @@ namespace WebApplication.ResourceServer.Controllers
         [HttpGet, HttpPost, HttpPut, HttpDelete, HttpHead]
         public IActionResult Handle()
         {
-            return HttpNotFound("The requested resource is not found");
+            return new HttpNotFoundResult();
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeFirstModel
+namespace ConsoleApplication1
 {
     class Program
     {

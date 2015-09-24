@@ -6,17 +6,17 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>0063c9ea-5755-4fae-84be-417fd71e7020</ProjectGuid>
+    <ProjectGuid>633072e6-da80-42a4-ae7e-75a1d004c4f3</ProjectGuid>
     <RootNamespace>WebApplication.ResourceServer</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">..\artifacts\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">..\artifacts\bin\$(MSBuildProjectName)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
-    <DevelopmentServerPort>35356</DevelopmentServerPort>
+    <DevelopmentServerPort>38441</DevelopmentServerPort>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodeFirstModel\CodeFirstModel.csproj" />
+    <ProjectReference Include="..\ConsoleApplication1\ConsoleApplication1.csproj" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>

@@ -1,18 +1,18 @@
-namespace CodeFirstModel.Migrations
+namespace ConsoleApplication1.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<CodeFirstModel.ElearningDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ConsoleApplication1.ElearningDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(CodeFirstModel.ElearningDbContext context)
+        protected override void Seed(ConsoleApplication1.ElearningDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

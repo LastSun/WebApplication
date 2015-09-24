@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace CodeFirstModel
+namespace ConsoleApplication1
 {
     public partial class ElearningDbContext : IdentityDbContext<User>
     {
